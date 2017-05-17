@@ -12,7 +12,7 @@ class EventRegistrationForm extends React.Component {
         phone: "",
         id_events: ""
       }
-    }
+    };
     this.handleAudienceInput = this.handleAudienceInput.bind(this);
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
   }
@@ -24,7 +24,7 @@ class EventRegistrationForm extends React.Component {
     $.post('/audienceRegistration', audience)
       .done(function (data) {
         console.log('Sucessfully Registered');
-      })
+      });
     this.setState({
       audience: {
         name: "",
@@ -45,22 +45,22 @@ class EventRegistrationForm extends React.Component {
 
   render() {
     return (
-        <form onSubmit={this.handleRegistrationSubmit}>
-          <h2> Event Registration: {this.props.event.name}</h2>
-          <div className="form-group">
-            <label>Name</label>
-            <input type='text' placeholder="Name" name="name" className="form-control" onChange={this.handleAudienceInput} value={this.state.audience.name} />
-          </div> 
-          <div className="form-group">
-            <label>Email address</label>
-            <input type='text' placeholder="Email" name="email" className="form-control" onChange={this.handleAudienceInput} value={this.state.audience.email} />
-          </div>
-          <div className="form-group">
-            <label>Phone Number</label>
-            <input type='text' placeholder="Phone Number" name="phone" className="form-control" onChange={this.handleAudienceInput} value={this.state.audience.phone} />
-          </div>
-          <button type="submit" className="btn-sm btn-primary">Submit</button>
-        </form>
+      <form onSubmit={this.handleRegistrationSubmit}>
+        <h2> Event Registration: {this.props.event.name}</h2>
+        <div className="form-group">
+          <label>Name</label>
+          <input type='text' placeholder="Name" name="name" className="form-control" onChange={this.handleAudienceInput} value={this.state.audience.name} />
+        </div>
+        <div className="form-group">
+          <label>Email address</label>
+          <input type='text' placeholder="Email" name="email" className="form-control" onChange={this.handleAudienceInput} value={this.state.audience.email} />
+        </div>
+        <div className="form-group">
+          <label>Phone Number</label>
+          <input type='text' placeholder="Phone Number" name="phone" className="form-control" onChange={this.handleAudienceInput} value={this.state.audience.phone} />
+        </div>
+        <button type="submit" className="btn-sm btn-primary">Submit</button>
+      </form>
     );
   }
 }

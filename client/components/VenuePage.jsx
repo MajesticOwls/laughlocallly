@@ -7,7 +7,7 @@ class VenuePage extends React.Component {
     super(props);
     this.state = { 
       allVenues: [],
-    }
+    };
     this.fetch = this.fetch.bind(this);    
   }
 
@@ -31,7 +31,8 @@ class VenuePage extends React.Component {
         <h1>Venue Page</h1>
         <VenueList data={this.state.allVenues}/>
       </div>
-  )}
+    )
+  }
 }
 
 export default VenuePage;

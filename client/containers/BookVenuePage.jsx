@@ -13,11 +13,10 @@ class BookVenuePage extends React.Component{
 
   render () {
     return (
-     <div> Book Venue 
-       <BookVenueList />
-     </div>
-
-      )
+      <div> Book Venue
+        <BookVenueList />
+      </div>
+    )
   }
 
 }
