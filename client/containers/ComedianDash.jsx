@@ -16,7 +16,7 @@ class ComedianDash extends React.Component{
     if (loggedIn) {
       return (
         <BrowserRouter>
-         <div className="container"> 
+          <div className="container">
             <nav className="navbar navbar-lower comedianNav">
               <div className="navbar-header">
                 <a className="navbar-brand navbar-left" href="/"> Welcome, {this.props.location.state.comedianInfo.name}! </a>
@@ -30,23 +30,18 @@ class ComedianDash extends React.Component{
                             pathname: "/manageevents",
                             state: {comedianInfo: this.props.location.state.comedianInfo}
                           }}
-                        > Manage Events </Link> </li>
+                        > Manage Events </Link>
+                  </li>
                 </ul>
               </div>
             </nav>
-          
-          
-          <Route path="/bookvenue" component={BookVenuePage} />
-          <Route path="/manageevents" component={ManageEventsPage} />
-
-       
-        </div>
+            <Route path="/bookvenue" component={BookVenuePage} />
+            <Route path="/manageevents" component={ManageEventsPage} />
+          </div>
         </BrowserRouter>
-
       )
-    } 
-  
-  return (<div> Please login or signup </div>)
+    }
+    return (<div> Please login or signup </div>)
   }
 } 
 export default ComedianDash;

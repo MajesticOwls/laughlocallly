@@ -2,7 +2,6 @@ import React from 'react';
 import $ from 'jquery';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-
 class ComedianEvents extends React.Component {
   constructor ({props}) {
     super(props);
@@ -12,7 +11,7 @@ class ComedianEvents extends React.Component {
   componentDidMount() {
     this.setState({
       event: this.props.event
-    })
+    });
 
     $.get('/getSpecificVenue', {id: this.props.event.id_venues})
     .done(data => {
@@ -25,7 +24,7 @@ class ComedianEvents extends React.Component {
   render() {
     return (
       <div> Event: <em>{this.state.event.name}</em> 
-      <div> 
+        <div>
           location: {this.state.venue.address}
         </div>
         <div>

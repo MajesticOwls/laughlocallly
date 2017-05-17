@@ -11,7 +11,7 @@ class EventListItem extends React.Component {
 
     this.state = {
       modalIsOpen: false
-    }
+    };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -34,10 +34,7 @@ class EventListItem extends React.Component {
             <p><strong>Date:</strong> {this.props.event.date}</p>
             <p><strong>Time:</strong> {this.props.event.start_time}</p>
             <p><strong>Description:</strong> {this.props.event.description}</p>
-
-
             <button className="btn btn-primary btn-sm" onClick={this.openModal} data-toggle="modal">Register</button>
-            
             <Modal
               isOpen={this.state.modalIsOpen}
               onRequestClose={this.closeModal}
@@ -48,7 +45,6 @@ class EventListItem extends React.Component {
               <p></p>
               <button className="btn-sm btn-default" onClick={this.closeModal}>Close</button>
             </Modal>
-
           </div>
         </div>
       </div>

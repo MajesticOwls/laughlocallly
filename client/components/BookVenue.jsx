@@ -3,9 +3,7 @@ import React from 'react';
 class BookVenue extends React.Component {
   constructor (props) {
     super(props);
-
     this.state = {}
-
   }
 
   render() {

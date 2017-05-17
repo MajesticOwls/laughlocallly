@@ -24,7 +24,7 @@ class SignupPage extends React.Component{
         photo_url: "",
         bio: ""
       }
-  }
+  };
 
   this.handleUserInput = this.handleUserInput.bind(this);
   this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
@@ -99,24 +99,24 @@ class SignupPage extends React.Component{
             <input type='text' placeholder="Bio" name="bio" className="form-control" onChange={this.handleUserInput} value={this.state.user.bio} />
           </div>
          
-         <div className="form-group">
+          <div className="form-group">
             <label> Twitter </label>
             <input type='text' placeholder="Twitter" name="twitter" className="form-control" onChange={this.handleUserInput} value={this.state.user.twitter} />
           </div>
 
-        <div className="form-group">
+          <div className="form-group">
             <label> Link a Photo of Yourself! </label>
             <input type='text' placeholder="url" name="photo_url" className="form-control" onChange={this.handleUserInput} value={this.state.user.photo_url} />
           </div>
 
-        <div className="form-group">
+          <div className="form-group">
             <label> Phone Number </label>
             <input type='text' placeholder="Phone Number" name="phone" className="form-control" onChange={this.handleUserInput} value={this.state.user.phone} />
           </div>
 
-        <button type="submit" className="btn-sm btn-primary">Create New Account</button>
-      </form>
-    </div> 
+          <button type="submit" className="btn-sm btn-primary">Create New Account</button>
+        </form>
+      </div>
     )
   }
 

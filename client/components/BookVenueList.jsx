@@ -6,9 +6,8 @@ class BookVenueList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openVenueList: []
-    }
-    
+      openVenueList: [],
+    };
     this.getOpenEvents = this.getOpenEvents.bind(this);
     // this.acceptEvent = this.acceptEvent.bind(this);
     // this.denyEvent = this.denyEvent.bind(this);

@@ -10,7 +10,7 @@ class EventPage extends React.Component {
     super(props);
     this.state = { 
       allEvents: [],
-    }
+    };
     this.fetch = this.fetch.bind(this);    
   }
 
@@ -33,16 +33,15 @@ class EventPage extends React.Component {
     return (
       <div className='bg'>
         <div className='container'>
-        <div className="jumbotron">
-          <h1></h1>
-          <h1>Find Local Laughs!</h1>
-          <p>Please register for upcoming events. Leave a message in the live chat below!</p>
-          <p> 
-            <Link to="/chatBox" className="btn btn-success btn-lg" role="button"> Live Event: Chat Now!</Link>
-          </p>
+          <div className="jumbotron">
+            <h1></h1>
+            <h1>Find Local Laughs!</h1>
+            <p>Please register for upcoming events. Leave a message in the live chat below!</p>
+            <p>
+              <Link to="/chatBox" className="btn btn-success btn-lg" role="button"> Live Event: Chat Now!</Link>
+            </p>
+          </div>
         </div>
-        </div>
-
         <div className='container'>
           <EventList data={this.state.allEvents}/>
         </div>

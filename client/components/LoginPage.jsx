@@ -15,7 +15,7 @@ class LoginPage extends React.Component{
   this.state = {
       email: "",
       password: ""
-  }
+  };
 
   this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   this.handleUsernameInput = this.handleUsernameInput.bind(this);
@@ -69,18 +69,15 @@ class LoginPage extends React.Component{
       <div className='container'>
         <form action="/" onSubmit={this.handleLoginSubmit}>
           <h2 > Login </h2>
-        
-         <div className="form-group">
+          <div className="form-group">
             <label> Email </label>
             <input type='text' placeholder="Email" name="email" className="form-control" onChange={this.handleUsernameInput} value={this.state.email} />
           </div>
-       
-        <div className="form-group">
+          <div className="form-group">
             <label> Password </label>
             <input type='text' placeholder="Password" name="password" className="form-control" onChange={this.handlePasswordInput} value={this.state.password} />
           </div>
-           <button type="submit" className="btn-sm btn-primary">Login</button>
-
+            <button type="submit" className="btn-sm btn-primary">Login</button>
           <CardText> Don't have an account? <Link to='/signup'> Create one </Link> </CardText>
         </form>
       </div>
