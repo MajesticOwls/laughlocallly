@@ -28,12 +28,12 @@ class MessageList extends React.Component {
             <h3 className="panel-title">Conversation</h3>
           </div>
           <div className="panel-body">
-            {this.props.messages.map((message, i) => 
+            {this.props.messages.map((message, i) =>
                 <Message key={i} name={message.name} text={message.text} />
-            )} 
+            )}
           </div>
         </div>
-      </div>      
+      </div>
     );
   }
 }
@@ -57,7 +57,7 @@ class MessageForm extends React.Component {
       text : this.state.text
     };
     console.log('message', message);
-    this.props.onMessageSubmit(message);  
+    this.props.onMessageSubmit(message);
     this.setState({ text: '' });
   }
 
@@ -154,11 +154,13 @@ class ChatBox extends React.Component {
                 <p><strong>Description:</strong> {this.state.nextEvent.description}</p>
               </div>
             </li>
-          </ul>        
+          </ul>
         </div>
+
         <div className='container'>
           <MessageList messages={this.state.messages} />
         </div>
+
         <div className='container'>
           <MessageForm onMessageSubmit={this.handleMessageSubmit}/>
         </div>
