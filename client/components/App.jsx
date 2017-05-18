@@ -58,7 +58,6 @@ class App extends React.Component {
         <Route
         path="/profile/:name"
         component={(props) => {
-
             // console.log(props);
             const profiles = this.state.comedians.filter((comedian) => props.match.params.name === comedian.name);
             // console.log(profiles[0]);
