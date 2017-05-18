@@ -5,37 +5,37 @@ import { DateField, Calendar } from 'react-date-picker';
 
 class BookPage extends React.Component{
   constructor(props){
-  super(props);  
-  
-  this.state = {
-      host: {
-        name: "",
-        email: "",
-        phone: ""
-      },
-      venue: {
-        address: "",
-        zipcode: "",
-        photo_url: "",
-        capacity: ""
-      },
-      event: {
-        date: "",
-        name: "",
-        description: "",
-        photo_url: "",
-        start_time: "",
-        end_time: "",
-        comedian_id: this.props.location.state.comedian.id,
-        status: "pending"
-      }
-  };
+    super(props);
 
-  this.handleHostInput = this.handleHostInput.bind(this);
-  this.handleVenueInput = this.handleVenueInput.bind(this);
-  this.handleEventInput = this.handleEventInput.bind(this);
-  this.handleDateInput = this.handleDateInput.bind(this);
-  this.handleBookSubmit = this.handleBookSubmit.bind(this);
+    this.state = {
+        host: {
+          name: "",
+          email: "",
+          phone: ""
+        },
+        venue: {
+          address: "",
+          zipcode: "",
+          photo_url: "",
+          capacity: ""
+        },
+        event: {
+          date: "",
+          name: "",
+          description: "",
+          photo_url: "",
+          start_time: "",
+          end_time: "",
+          comedian_id: this.props.location.state.comedian.id,
+          status: "pending"
+        }
+    };
+
+    this.handleHostInput = this.handleHostInput.bind(this);
+    this.handleVenueInput = this.handleVenueInput.bind(this);
+    this.handleEventInput = this.handleEventInput.bind(this);
+    this.handleDateInput = this.handleDateInput.bind(this);
+    this.handleBookSubmit = this.handleBookSubmit.bind(this);
   }
 
   handleBookSubmit(e){

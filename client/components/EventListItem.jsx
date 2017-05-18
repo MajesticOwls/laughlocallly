@@ -1,6 +1,7 @@
 import React from 'react';
 // import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import $ from 'jquery';
 
 import EventRegistrationForm from './EventRegistrationForm.jsx';
 
@@ -10,10 +11,12 @@ class EventListItem extends React.Component {
     super(props);
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      audienceCount: 0
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.getAudienceCount = this.getAudienceCount.bind(this);
   }
 
   openModal() {
@@ -22,6 +25,19 @@ class EventListItem extends React.Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
+  }
+
+  getAudienceCount() {
+    let context = this;
+    $.get('/getAudienceCount', {id:this.props.event.id}, function (data) {
+      context.setState({
+        audienceCount: data.length,
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.getAudienceCount();
   }
 
   render() {
@@ -34,6 +50,7 @@ class EventListItem extends React.Component {
             <p><strong>Date:</strong> {this.props.event.date}</p>
             <p><strong>Time:</strong> {this.props.event.start_time}</p>
             <p><strong>Description:</strong> {this.props.event.description}</p>
+            <p><strong>Audience Members: </strong>{this.state.audienceCount}</p>
             <button className="btn btn-primary btn-sm" onClick={this.openModal} data-toggle="modal">Register</button>
             <Modal
               isOpen={this.state.modalIsOpen}

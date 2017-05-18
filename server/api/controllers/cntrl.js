@@ -72,23 +72,27 @@ module.exports.getComedian = function(req, res) {
 };
 
 module.exports.getAllEventsForEventPage = function(req, res) {
-  console.log('req', req.query)
-  var queryString = `SELECT * FROM events WHERE status = 'booked'`
+  var queryString = `SELECT * FROM events WHERE status = 'booked'`;
   db.query(queryString, function(err, result) {
     res.json(result);
   })
 };
 
 module.exports.audienceRegistration = function(req, res) {
-  var params = [];
-  for (var key in req.body) {
-    params.push(req.body[key]);
-  }
-
-  var queryString = 'INSERT INTO audience (name, email, phone, id_events) VALUE (?,?,?,?)' 
-  db.query(queryString, params, function(err, result) {
+  let registree = req.body;
+  var queryString = `INSERT INTO audience (name, email, phone, id_events) VALUES ('${registree.name}', '${registree.email}', '${registree.phone}', ${registree.id_events})`;
+  db.query(queryString, function(err, result) {
     res.json(result);
   })
+};
+
+module.exports.getAudienceCount = function(req, res) {
+  var queryString = `SELECT * FROM audience WHERE id_events = ${req.query.id}`;
+  db.query(queryString, function(err, result) {
+    console.log('results', result);
+    res.json(result);
+  })
+
 };
 
 module.exports.signup = function(req, res) {
