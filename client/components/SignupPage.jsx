@@ -14,16 +14,16 @@ class SignupPage extends React.Component{
   super(props);  
   
   this.state = {
-      user: {
-        name: "",
-        email: "",
-        password: "",
-        website: "",
-        phone: "",
-        twitter: "",
-        photo_url: "",
-        bio: ""
-      }
+    user: {
+      name: "",
+      email: "",
+      password: "",
+      website: "",
+      phone: "",
+      twitter: "",
+      photo_url: "",
+      bio: ""
+    }
   };
 
   this.handleUserInput = this.handleUserInput.bind(this);
@@ -52,8 +52,8 @@ class SignupPage extends React.Component{
           context.props.history.push({
             pathname: '/comediandash',
             state: {comedianInfo: comedianInfo}
-        })
-       }
+          })
+        }
       },
       error: function(error) {
         console.error('failed to send', error);
