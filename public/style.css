@@ -77,7 +77,7 @@
 }
 
 .thumbnail {
-  height: 450px;
+  height: auto;
   padding: 10px;
 }
 

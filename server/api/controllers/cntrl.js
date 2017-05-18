@@ -89,7 +89,6 @@ module.exports.audienceRegistration = function(req, res) {
 module.exports.getAudienceCount = function(req, res) {
   var queryString = `SELECT * FROM audience WHERE id_events = ${req.query.id}`;
   db.query(queryString, function(err, result) {
-    console.log('results', result);
     res.json(result);
   })
 

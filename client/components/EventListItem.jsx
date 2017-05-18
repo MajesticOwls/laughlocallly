@@ -50,7 +50,7 @@ class EventListItem extends React.Component {
             <p><strong>Date:</strong> {this.props.event.date}</p>
             <p><strong>Time:</strong> {this.props.event.start_time}</p>
             <p><strong>Description:</strong> {this.props.event.description}</p>
-            <p><strong>Audience Members: </strong>{this.state.audienceCount}</p>
+            <p><strong>RSVP's: </strong>{this.state.audienceCount}</p>
             <button className="btn btn-primary btn-sm" onClick={this.openModal} data-toggle="modal">Register</button>
             <Modal
               isOpen={this.state.modalIsOpen}
@@ -58,7 +58,7 @@ class EventListItem extends React.Component {
               style={customStyles}
               contentLabel="Register Popup"
             >
-              <EventRegistrationForm event={this.props.event}/>
+              <EventRegistrationForm audienceCount = {this.getAudienceCount} event={this.props.event}/>
               <p></p>
               <button className="btn-sm btn-default" onClick={this.closeModal}>Close</button>
             </Modal>
