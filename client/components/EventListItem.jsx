@@ -58,7 +58,7 @@ class EventListItem extends React.Component {
               style={customStyles}
               contentLabel="Register Popup"
             >
-              <EventRegistrationForm audienceCount = {this.getAudienceCount} event={this.props.event}/>
+              <EventRegistrationForm audienceCount = {this.getAudienceCount} close = {this.closeModal} event={this.props.event}/>
               <p></p>
               <button className="btn-sm btn-default" onClick={this.closeModal}>Close</button>
             </Modal>

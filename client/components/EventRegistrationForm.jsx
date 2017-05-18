@@ -35,6 +35,7 @@ class EventRegistrationForm extends React.Component {
     });
     alert("You have successfully RSVP'd");
     this.props.audienceCount();
+    this.props.close();
   }
 
   handleAudienceInput(e){
