@@ -15,7 +15,8 @@ class Navigation extends React.Component {
   }
 
   hideChat() {
-    var current =this.state.chatNav;
+    var current=this.state.chatNav;
+
     this.setState({
       chatNav: !current
     })
@@ -43,7 +44,7 @@ class Navigation extends React.Component {
               <div onClick={this.hideChat.bind(this)} className='panel-heading'>
                 <span >Chat</span>
               </div>
-              <div class="panel-body">{this.state.chatNav ?
+              <div>{this.state.chatNav ?
                 <div><ChatBox/></div> : <div></div>}
               </div>
               </div>

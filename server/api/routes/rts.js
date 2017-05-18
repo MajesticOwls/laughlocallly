@@ -24,8 +24,11 @@ router.post('/signup', cntrl.signup);
 router.post('/bookcomedian', cntrl.bookcomedian);
 router.get('/getSpecificVenue', cntrl.getSpecificVenue);
 
-router.put('/updateComedian', cntrl.updateComedian)
+router.put('/updateComedian', cntrl.updateComedian);
 
+//for saving mesaages
+router.post('/message/save', cntrl.messageSave);
+router.get('/message/return', cntrl.returnAllMessages);
 
 
 
