@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS heroku_46dfd3e3a278e3c; 
+DROP DATABASE IF EXISTS heroku_46dfd3e3a278e3c;
 
-CREATE DATABASE heroku_46dfd3e3a278e3c;  
+CREATE DATABASE heroku_46dfd3e3a278e3c;
 
 USE heroku_46dfd3e3a278e3c;
 
@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS venues;
 DROP TABLE IF EXISTS venueavailability;
 DROP TABLE IF EXISTS comedians;
 DROP TABLE IF EXISTS hosts;
+DROP TABLE IF EXISTS MessageBoard;
 
 CREATE TABLE `audience` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -25,8 +26,8 @@ CREATE TABLE `events` (
   `name` VARCHAR(255),
   `id_comedians` INTEGER NOT NULL,
   `date` DATE NOT NULL,
-  `start_time` TIME NOT NULL, 
-  `end_time` TIME NOT NULL, 
+  `start_time` TIME NOT NULL,
+  `end_time` TIME NOT NULL,
   `id_venues` INTEGER NOT NULL,
   `photo_url` VARCHAR(300),
   `status` VARCHAR(50) NOT NULL,
@@ -46,7 +47,7 @@ CREATE TABLE `venues` (
 );
 
 CREATE TABLE `venueavailability` (
-  `id` INTEGER NOT NULL, 
+  `id` INTEGER NOT NULL,
   `start_date` DATETIME NOT NULL,
   `end_date` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
@@ -75,6 +76,16 @@ CREATE TABLE `hosts` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `Messageboard` (
+  'id' INTEGER NOT NULL AUTO_INCREMENT,
+  'user' VARCHAR(255) NOT NULL,
+  'text' VARCHAR(5000) NOT NULL,
+  PRIMARY KEY('id')
+
+);
+-- FOR SAVING ALL MESSAGES IN MAIN MESSAGE BOARD
+
+
 -- ALTER TABLE `audience` ADD FOREIGN KEY (id_events) REFERENCES `events` (`id`);
 -- ALTER TABLE `events` ADD FOREIGN KEY (id_venues) REFERENCES `venues` (`id`);
 -- ALTER TABLE `events` ADD FOREIGN KEY (id_comedians) REFERENCES `comedians` (`id`);
@@ -85,4 +96,3 @@ CREATE TABLE `hosts` (
 --   mysql -u root < database/schema.sql
 -- Step 2) Open mysql (no password for root)
 --   mysql -u root -p
-

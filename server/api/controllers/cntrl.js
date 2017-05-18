@@ -53,7 +53,7 @@ module.exports.getVenues = function(req, res) {
   var queryString = 'SELECT * FROM venues';
   db.query(queryString, function (err, result){
     res.json(result);
-  })  
+  })
 };
 
 module.exports.getComedians = function(req, res) {
@@ -64,7 +64,7 @@ module.exports.getComedians = function(req, res) {
 };
 
 module.exports.getComedian = function(req, res) {
-  var queryString = `SELECT username FROM comedians where 
+  var queryString = `SELECT username FROM comedians where
   (username = ${req.body.username});`
   db.query(queryString, function(err, result) {
     res.json(result);
@@ -97,24 +97,24 @@ module.exports.getAudienceCount = function(req, res) {
 
 module.exports.signup = function(req, res) {
   var ob = req.body;
-  var queryString = `SELECT * FROM comedians where 
+  var queryString = `SELECT * FROM comedians where
   (email = '${req.body.email}');`;
   db.query(queryString, function(err, result) {
     console.log('search performed');
     if (result.length > 0) {
       res.json(null);
     } else {
-      var queryString = `INSERT INTO comedians 
-        (name, email, password, website, phone, twitter, photo_url, bio, salt, video_url) VALUES 
-        ('${ob.name}', '${ob.email}', '${ob.password}', '${ob.website}', '${ob.phone}', 
+      var queryString = `INSERT INTO comedians
+        (name, email, password, website, phone, twitter, photo_url, bio, salt, video_url) VALUES
+        ('${ob.name}', '${ob.email}', '${ob.password}', '${ob.website}', '${ob.phone}',
         '${ob.twitter}', '${ob.photo_url}', '${ob.bio}', '${ob.salt}', 'todolater')`;
       db.query(queryString, function(err, result) {
         console.log('comedian info inserted into comedians table');
         res.json({
-          email: ob.email, 
+          email: ob.email,
           name: ob.name
         })
-      })  
+      })
     }
   })
 };
@@ -169,11 +169,11 @@ module.exports.bookcomedian = function(req, res) {
             var venueparams = [];
             for (var key in req.body.venue){
               venueparams.push(req.body.venue[key])
-            } 
+            }
             venueparams.push(idHost);
             var queryString = `INSERT INTO venues (address, zipcode, photo_url, capacity, id_hosts) VALUE (?, ?, ?, ?, ?)`
             db.query(queryString, venueparams, function(err, result) {
-              if (err){  
+              if (err){
                 console.log(err)
               } else {
                 var queryString = `SELECT id FROM venues ORDER BY id DESC LIMIT 1`
@@ -212,7 +212,7 @@ module.exports.checkLogin = function(req, res) {
   var info = req.body;
   var email = req.body.email;
   var password = req.body.password;
-  var queryString = `SELECT * FROM comedians where 
+  var queryString = `SELECT * FROM comedians where
   (email = '${req.body.email}');`
   db.query(queryString, function(err, result) {
     res.json(result)
@@ -222,9 +222,29 @@ module.exports.checkLogin = function(req, res) {
 module.exports.getSpecificVenue = function(req, res) {
   console.log(req.query.id);
   var venueId = req.query.id
-  var queryString = `SELECT * FROM venues where 
+  var queryString = `SELECT * FROM venues where
   (id = ${venueId});`
   db.query(queryString, function(err, result) {
+    res.json(result);
+  })
+};
+module.exports.messageSave = function(req,res) {
+  var inputArray = [];
+  inputArray.push(req.body.name);
+  inputArray.push(req.body.text);
+  console.log(inputArray);
+  var saveString = `INSERT INTO Messageboard (name, text) VALUES (?,?);`;
+  db.query(saveString, inputArray, function(err, result) {
+    if (err) {
+      console.log(err);
+    }
+      res.json(result);
+  })
+};
+
+module.exports.returnAllMessages = function(req, res) {
+  var returnString = 'SELECT * FROM Messageboard;'
+  db.query(returnString, function(err, result) {
     res.json(result);
   })
 };
