@@ -7,7 +7,8 @@
     "build": "webpack -d --watch",
     "start": "node server/index.js",
     "dev-server": "nodemon server/index.js",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "heroku-postbuild": "webpack -p"
   },
   "author": "World Turtles",
   "license": "ISC",
