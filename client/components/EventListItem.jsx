@@ -30,8 +30,6 @@ class EventListItem extends React.Component {
   getAudienceCount() {
     let context = this;
     $.get('/getAudienceCount', {id:this.props.event.id}, function (data) {
-      console.log('data', data);
-      console.log(data.length);
       context.setState({
         audienceCount: data.length,
       });

@@ -72,8 +72,7 @@ module.exports.getComedian = function(req, res) {
 };
 
 module.exports.getAllEventsForEventPage = function(req, res) {
-  console.log('req', req.query)
-  var queryString = `SELECT * FROM events WHERE status = 'booked'`
+  var queryString = `SELECT * FROM events WHERE status = 'booked'`;
   db.query(queryString, function(err, result) {
     res.json(result);
   })

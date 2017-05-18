@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97b2a5d8-8681-4065-9b02-22e352aea6db" name="Default" comment="(refactor) Changed indenting for all files.">
+<<<<<<< 83a0dfcbb691c66294b9f3b8578403e29bdfeae8
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/App.jsx" afterPath="$PROJECT_DIR$/client/components/App.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/EventList.jsx" afterPath="$PROJECT_DIR$/client/components/EventList.jsx" />
+=======
+>>>>>>> (feat) Audience Count
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/EventListItem.jsx" afterPath="$PROJECT_DIR$/client/components/EventListItem.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/containers/BookPage.jsx" afterPath="$PROJECT_DIR$/client/containers/BookPage.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/containers/ComedianDash.jsx" afterPath="$PROJECT_DIR$/client/containers/ComedianDash.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api/controllers/cntrl.js" afterPath="$PROJECT_DIR$/server/api/controllers/cntrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api/routes/rts.js" afterPath="$PROJECT_DIR$/server/api/routes/rts.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,8 +49,13 @@
       <file leaf-file-name="EventListItem.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/components/EventListItem.jsx">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< 83a0dfcbb691c66294b9f3b8578403e29bdfeae8
             <state relative-caret-position="280">
               <caret line="19" column="3" lean-forward="false" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+=======
+            <state relative-caret-position="285">
+              <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+>>>>>>> (feat) Audience Count
               <folding>
                 <element signature="e#111#143#0" expanded="true" />
                 <marker date="1495123082000" expanded="true" signature="280:2152" ph="{...}" />
@@ -81,6 +85,7 @@
       <file leaf-file-name="cntrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/controllers/cntrl.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< 83a0dfcbb691c66294b9f3b8578403e29bdfeae8
             <state relative-caret-position="566">
               <caret line="102" column="36" lean-forward="false" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
               <folding>
@@ -95,6 +100,11 @@
                 <marker date="1495123082000" expanded="true" signature="6797:6863" ph="{...}" />
                 <marker date="1495123082000" expanded="true" signature="6869:6936" ph="{...}" />
               </folding>
+=======
+            <state relative-caret-position="551">
+              <caret line="101" column="36" lean-forward="true" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+              <folding />
+>>>>>>> (feat) Audience Count
             </state>
           </provider>
         </entry>
@@ -133,12 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Upcoming Event</find>
-      <find>Upcoming Events</find>
-      <find>E</find>
-      <find>Event</find>
-      <find>EventLi</find>
-      <find>Ev</find>
       <find>i</find>
       <find>import</find>
       <find>import Event</find>
@@ -147,7 +151,6 @@
       <find>import EventList</find>
       <find>m</find>
       <find>mySQL</find>
-      <find>c</find>
       <find>connect</find>
       <find>connector</find>
       <find>connecto</find>
@@ -162,6 +165,13 @@
       <find>$.get</find>
       <find>req.body</find>
       <find>setState</find>
+      <find>c</find>
+      <find>console.l</find>
+      <find>console.log</find>
+      <find>console.log(</find>
+      <find>console.log('re</find>
+      <find>console.log('req</find>
+      <find>console.log('req'</find>
       <find>getBookedEvent</find>
     </findStrings>
   </component>
@@ -194,8 +204,12 @@
         <option value="$PROJECT_DIR$/client/components/App.jsx" />
         <option value="$PROJECT_DIR$/client/components/EventList.jsx" />
         <option value="$PROJECT_DIR$/server/api/routes/rts.js" />
-        <option value="$PROJECT_DIR$/server/api/controllers/cntrl.js" />
         <option value="$PROJECT_DIR$/client/containers/BookPage.jsx" />
+<<<<<<< 83a0dfcbb691c66294b9f3b8578403e29bdfeae8
+=======
+        <option value="$PROJECT_DIR$/client/containers/ComedianDash.jsx" />
+        <option value="$PROJECT_DIR$/server/api/controllers/cntrl.js" />
+>>>>>>> (feat) Audience Count
         <option value="$PROJECT_DIR$/client/components/EventListItem.jsx" />
         <option value="$PROJECT_DIR$/client/containers/ComedianDash.jsx" />
       </list>
@@ -510,12 +524,16 @@
       <workItem from="1494956881815" duration="2255000" />
       <workItem from="1495039696421" duration="39000" />
       <workItem from="1495039752462" duration="2051000" />
-      <workItem from="1495041933254" duration="9644000" />
+      <workItem from="1495041933254" duration="10692000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< 83a0dfcbb691c66294b9f3b8578403e29bdfeae8
     <option name="totallyTimeSpent" value="14008000" />
+=======
+    <option name="totallyTimeSpent" value="15037000" />
+>>>>>>> (feat) Audience Count
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -866,16 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/components/EventPage.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/components/LoginPage.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -904,9 +912,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -918,6 +924,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< 83a0dfcbb691c66294b9f3b8578403e29bdfeae8
     <entry file="file://$PROJECT_DIR$/server/api/routes/rts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -953,6 +960,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> (feat) Audience Count
     <entry file="file://$PROJECT_DIR$/client/components/VenueList.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -979,10 +988,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/controllers/cntrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="101" column="36" lean-forward="true" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/containers/BookVenuePage.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/routes/rts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/components/EventPage.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/components/EventListItem.jsx">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< 83a0dfcbb691c66294b9f3b8578403e29bdfeae8
         <state relative-caret-position="280">
           <caret line="19" column="3" lean-forward="false" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+=======
+        <state relative-caret-position="285">
+          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+>>>>>>> (feat) Audience Count
           <folding>
             <element signature="e#111#143#0" expanded="true" />
             <marker date="1495123082000" expanded="true" signature="280:2152" ph="{...}" />
