@@ -103,7 +103,7 @@ module.exports.signup = function(req, res) {
       var queryString = `INSERT INTO comedians 
         (name, email, password, website, phone, twitter, photo_url, bio, salt, video_url) VALUES 
         ('${ob.name}', '${ob.email}', '${ob.password}', '${ob.website}', '${ob.phone}', 
-        '${ob.twitter}', '${ob.photo_url}', '${ob.photo_url}', '${ob.salt}', 'todolater')`;
+        '${ob.twitter}', '${ob.photo_url}', '${ob.bio}', '${ob.salt}', 'todolater')`;
       db.query(queryString, function(err, result) {
         console.log('comedian info inserted into comedians table');
         res.json({
@@ -114,6 +114,34 @@ module.exports.signup = function(req, res) {
     }
   })
 };
+
+module.exports.updateComedian = (req, res) => {
+  console.log('user info', req.body);
+  let queryString = `SELECT * FROM comedians WHERE email = '${req.body.email}';`;
+  db.query(queryString, (error, result) => {
+    if (result.length > 0 && result[0].id !== +req.body.id) {
+      res.json(null);
+    } else {
+      queryString = `
+        UPDATE comedians
+        SET
+          name = '${req.body.name}',
+          email = '${req.body.email}',
+          password = '${req.body.password}',
+          salt = '${req.body.salt}',
+          website = '${req.body.website}',
+          bio = '${req.body.bio}',
+          twitter = '${req.body.twitter}',
+          photo_url = '${req.body.photo_url}',
+          video_url = '${req.body.video_url}',
+          phone = '${req.body.phone}'
+        WHERE id = ${req.body.id};`;
+      db.query(queryString, (error, result) => {
+        res.json(result);
+      })
+    }
+  })
+}
 
 module.exports.bookcomedian = function(req, res) {
   console.log(req.body)
