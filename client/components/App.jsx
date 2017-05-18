@@ -63,9 +63,10 @@ class App extends React.Component {
             const profiles = this.state.comedians.filter((comedian) => props.match.params.name === comedian.name);
             // console.log(profiles[0]);
             return <ComedianProfile comedian={profiles[0]} {...props} />
-            }}
+        }}
         />
       </div>
+
 
     )
   }

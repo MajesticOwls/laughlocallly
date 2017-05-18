@@ -44,8 +44,12 @@ class MessageForm extends React.Component {
     this.state = {
       text: '',
       name: ''
+<<<<<<< HEAD
 
     };
+=======
+    }
+>>>>>>> 15e03ab7a6e1f923755cf1535e453418fe52942c
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
@@ -162,6 +166,7 @@ class ChatBox extends React.Component {
         <div className='container'>
           <MessageList messages={this.state.messages} />
         </div>
+
         <div className='container'>
           <MessageForm onMessageSubmit={this.handleMessageSubmit}/>
         </div>
