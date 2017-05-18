@@ -16,6 +16,7 @@ router.get('/updateStatusToOpen', cntrl.updateEventStatusOpen);
 router.get('/getPendingEvents', cntrl.getPendingEvents);
 router.get('/getBookedEvents', cntrl.getBookedEvents);
 router.get('/getOpenEvents', cntrl.getOpenEvents);
+router.get('/getAudienceCount', cntrl.getAudienceCount);
 
 router.post('/loginCheck', cntrl.checkLogin);
 router.post('/audienceRegistration', cntrl.audienceRegistration);
@@ -23,6 +24,11 @@ router.post('/signup', cntrl.signup);
 router.post('/bookcomedian', cntrl.bookcomedian);
 router.get('/getSpecificVenue', cntrl.getSpecificVenue);
 
+router.put('/updateComedian', cntrl.updateComedian);
+
+//for saving mesaages
+router.post('/message/save', cntrl.messageSave);
+router.get('/message/return', cntrl.returnAllMessages);
 
 
 

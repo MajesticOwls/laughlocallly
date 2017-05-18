@@ -23,7 +23,7 @@ class App extends React.Component {
   }
 
   componentWillMount(){
-    var context=this;
+    let context=this;
     $.get('/getComedians')
      .done(function(data){
         // console.log(data, 'COMEDIAN DATA');
@@ -31,7 +31,7 @@ class App extends React.Component {
      })
      .fail(function(err){
         console.error(err, "ERROR RECEIVING INFO")
-     })
+     });
 
     $.get('/getAllEventsForEventPage')
     .done(function (data){
@@ -44,11 +44,10 @@ class App extends React.Component {
 
   render () {
     return (
-
       <div>
-      <div>
-        <Navigation />
-      </div>
+        <div>
+          <Navigation />
+        </div>
         <Route exact path='/' component={EventPage} />
         <Route path="/comedianprofiles" component={(props) => <ComedianList comedians={this.state.comedians}{...props} />} />
         <Route path="/login" component={LoginPage} />
@@ -63,12 +62,11 @@ class App extends React.Component {
             const profiles = this.state.comedians.filter((comedian) => props.match.params.name === comedian.name);
             // console.log(profiles[0]);
             return <ComedianProfile comedian={profiles[0]} {...props} />
-      }}/>
+        }}
+        />
+      </div>
 
 
-
-
-    </div>
     )
   }
 }

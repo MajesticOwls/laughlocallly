@@ -34,13 +34,13 @@ class ComedianProfile extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-8">
-              <div className="comedianheader">
-                <h1> {name} </h1>
-              </div>
-              <p className="bio"> {bio} </p>
-                <div>
-                  <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video_url.slice(32)}`} frameBorder='0' allowFullScreen />
-                </div>
+            <div className="comedianheader">
+              <h1> {name} </h1>
+            </div>
+            <p className="bio"> {bio} </p>
+            <div>
+              <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video_url.slice(32)}`} frameBorder='0' allowFullScreen />
+            </div>
           </div>
             <div className="container sidebar">
               <div className="col-md-4">
@@ -48,19 +48,15 @@ class ComedianProfile extends React.Component {
                 <div className="upcoming-events">
                   <b>Upcoming Events</b>
                   <div>
-                  {this.state.bookedEventList.map(event => {return (<ComedianEvents event={event}/>) })}
+                    {this.state.bookedEventList.map(event => {return (<ComedianEvents event={event}/>) })}
                   </div>
                 </div>
             </div>
           </div>
         </div>
       </div>
-
     )
   }
-
-
-
 }
 
 export default ComedianProfile

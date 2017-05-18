@@ -7,7 +7,7 @@ class BookedEvents extends React.Component {
     super(props);
     this.state = {
       bookedEventList: []
-    }
+    };
     
     this.getBookedEvents = this.getBookedEvents.bind(this);
     this.cancelEvent = this.cancelEvent.bind(this);
@@ -27,7 +27,7 @@ class BookedEvents extends React.Component {
     })
   } 
 
- cancelEvent(eventName) {
+  cancelEvent(eventName) {
     const bookedList = this.state.bookedEventList;
     const eventPos = bookedList.map(event => event.name).indexOf(eventName);
     console.log('Deny Event id', eventPos);
@@ -44,11 +44,10 @@ class BookedEvents extends React.Component {
     return (
       <div className="col-sm-6 col-md-4">
         <h3>Booked event details!</h3>
-        {this.state.bookedEventList.length ? this.state.bookedEventList.map( (booked) => <BookedEvent cancel={this.cancelEvent} booked={booked} key={booked.id}/> ) : <h3>No Events Are Booked</h3>} 
+        {this.state.bookedEventList.length ? this.state.bookedEventList.map( (booked) => <BookedEvent cancel={this.cancelEvent} booked={booked} key={booked.id}/> ) : <h3>No Events Are Booked</h3>}
       </div>
     );
   }
-  
 }
 
 export default BookedEvents;

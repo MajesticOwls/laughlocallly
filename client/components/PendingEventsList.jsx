@@ -7,7 +7,7 @@ class PendingEvents extends React.Component {
     super(props);
     this.state = {
       pendingEventList: []
-    }
+    };
     
     this.getPendingEvent = this.getPendingEvent.bind(this);
     this.acceptEvent = this.acceptEvent.bind(this);

@@ -8,6 +8,7 @@ import EventDetail from './EventDetail.jsx';
 class EventList extends React.Component {
   constructor (props) {
     super(props);
+    console.log(props.data);
   }
 
   render() {
@@ -15,10 +16,9 @@ class EventList extends React.Component {
       <div>
         <h3>Upcoming Events:</h3>
         <div className="row">
-          {this.props.data.map( (event) => <EventListItem event={event} key={event.name}/> )}           
+          {this.props.data.map( (event) => <EventListItem event={event} key={event.name}/> )}
         </div>
       </div>
-
     );
   }
 }

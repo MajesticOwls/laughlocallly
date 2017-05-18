@@ -7,7 +7,8 @@
     "build": "webpack -d --watch",
     "start": "node server/index.js",
     "dev-server": "nodemon server/index.js",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "heroku-postbuild": "webpack -p"
   },
   "author": "World Turtles",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "babel-loader": "^6.4.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "crypto": "0.0.3",
@@ -48,6 +50,7 @@
     "reactstrap": "^4.5.0",
     "socket.io": "^2.0.1",
     "style-loader": "^0.17.0",
-    "validator": "^7.0.0"
+    "validator": "^7.0.0",
+    "webpack": "^2.5.1"
   }
 }

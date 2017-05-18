@@ -8,16 +8,10 @@ const ComedianList = ({comedians}) => (
     <div className="comedianListHeader">
       <h2> Comedians For You </h2>
     </div>
-          {comedians.map((obj) => (
-              <ComedianListItem key={obj.id} item={obj} />
-            ))}
-    
+    {comedians.map((obj) => (
+        <ComedianListItem key={obj.id} item={obj} />
+    ))}
   </div>
-  
-
-
-
-
 )
 
 export default ComedianList

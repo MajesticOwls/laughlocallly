@@ -8,9 +8,9 @@ class Message extends React.Component {
 
   render () {
     return (
-      <div>
-        <strong>{this.props.name}: </strong> {this.props.text}
-      </div>
+        <div>
+          <strong>{this.props.name}: </strong> {this.props.text}
+        </div>
     );
   }
 }
@@ -44,8 +44,7 @@ class MessageForm extends React.Component {
     this.state = {
       text: '',
       name: ''
-    }
-
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleTextInput = this.handleTextInput.bind(this);
@@ -56,7 +55,7 @@ class MessageForm extends React.Component {
     var message = {
       name : this.state.name,
       text : this.state.text
-    }
+    };
     console.log('message', message);
     this.props.onMessageSubmit(message);
     this.setState({ text: '' });
@@ -91,7 +90,7 @@ class ChatBox extends React.Component {
       users: [],
       messages: [],
       text: ''
-    }
+    };
     this.newMessage = this.newMessage.bind(this);
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
   }
@@ -165,7 +164,6 @@ class ChatBox extends React.Component {
         <div className='container'>
           <MessageForm onMessageSubmit={this.handleMessageSubmit}/>
         </div>
-
       </div>
     );
   }

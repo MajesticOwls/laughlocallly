@@ -13,15 +13,24 @@ setInterval(() => {
   db.query('SELECT 1');
 }, 5000);
 
-// this will automatically insert tables into mysql when server is run from command line. 
+// this will automatically insert tables into mysql when server is run from command line.
 var dp = Promise.promisifyAll(db);
 
 dp.connectAsync()
   .then(() => {
   	return dp.queryAsync(`CREATE DATABASE IF NOT EXISTS heroku_46dfd3e3a278e3c`)
-  }) 
+  })
   .then(() => {
   	return dp.queryAsync(`USE heroku_46dfd3e3a278e3c`)
+  })
+  .then(() => {
+    return dp.queryAsync(`
+      CREATE TABLE IF NOT EXISTS messageboard (
+        id INTEGER NOT NULL AUTO_INCREMENT,
+        user VARCHAR(255) NOT NULL,
+        text VARCHAR(1000) NOT NULL,
+        PRIMARY KEY('id')
+      )`)
   })
   .then(() => {
   	return dp.queryAsync(`
@@ -32,7 +41,7 @@ dp.connectAsync()
         phone VARCHAR(255) NOT NULL,
         id_events INTEGER NOT NULL,
         PRIMARY KEY (id)
-      )`)
+      );`)
   })
   .then(() => {
   	return dp.queryAsync(`
@@ -41,8 +50,8 @@ dp.connectAsync()
         name VARCHAR(255),
         id_comedians INTEGER,
         date VARCHAR(50),
-        start_time VARCHAR(20), 
-        end_time VARCHAR(20), 
+        start_time VARCHAR(20),
+        end_time VARCHAR(20),
         id_venues INTEGER,
         photo_url VARCHAR(300),
         status VARCHAR(50),
@@ -66,7 +75,7 @@ dp.connectAsync()
   .then(() => {
   	return dp.queryAsync(`
   		CREATE TABLE IF NOT EXISTS venueavailability (
-	      id INTEGER NOT NULL, 
+	      id INTEGER NOT NULL,
 			  start_date DATETIME NOT NULL,
 			  end_date DATETIME NOT NULL,
 			  PRIMARY KEY (id)
@@ -99,5 +108,6 @@ dp.connectAsync()
 			  PRIMARY KEY (id)
 			);`)
   })
+
 
 module.exports = db;

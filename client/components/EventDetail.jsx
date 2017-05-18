@@ -11,10 +11,9 @@ class EventDetail extends React.Component {
 
   render() {
     return (
-     <div>
-      <EventRegistrationForm event={this.props.data} eventID={this.props.match.params.id}/>
-    </div>
-
+      <div>
+        <EventRegistrationForm event={this.props.data} eventID={this.props.match.params.id}/>
+      </div>
     );
   }
 }

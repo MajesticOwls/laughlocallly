@@ -2,11 +2,18 @@ import React from 'react';
 import $ from 'jquery';
 var socket = io.connect();
 
+// class for each message
 class Message extends React.Component {
   constructor (props) {
     super(props);
   }
-
+componentDidMount(){
+  this.scrollToBottom();
+}
+scrollToBottom() {
+  $(".panel-body").animate({ scrollTop: $(document).height() }, "fast");
+  return false;
+}
   render () {
     return (
       <div>
@@ -16,6 +23,7 @@ class Message extends React.Component {
   }
 }
 
+//class that returns the list of messages
 class MessageList extends React.Component {
   constructor (props) {
     super(props);
@@ -34,6 +42,7 @@ class MessageList extends React.Component {
   }
 }
 
+//functions for submitting messages and name
 class MessageForm extends React.Component {
   constructor (props) {
     super(props);
@@ -57,9 +66,46 @@ class MessageForm extends React.Component {
       text : this.state.text,
     }
     console.log('message', message);
+    this.SaveMessages(message);
     this.props.onMessageSubmit(message);
     this.setState({ text: '' });
   }
+
+  SaveMessages(message) {
+    $.ajax({
+      type: 'POST',
+      url: '/message/save',
+      contentType: 'application/JSON',
+      data: JSON.stringify({
+              name: message.name,
+              text: message.text
+            })
+    })
+    .done((data) => {
+      success: (data) => {
+        console.log('messaged Saved', data);
+      }
+    })
+    .fail((err) => {
+      console.log('failed to GET', err);
+    })
+  }
+
+  returnMessage() {
+     $.ajax({
+      type: 'GET',
+      url: '/message/return',
+      datatype: 'json'
+    })
+    .done((data) => {
+      console.log('messages return', data);
+    })
+    .fail((err) => {
+      console.log('messages not returned');
+    })
+  }
+
+
 
   handleNameInput(e) {
     e.preventDefault();
@@ -71,38 +117,17 @@ class MessageForm extends React.Component {
     this.setState({
       hideName: false
     })
+
   }
 
-
-
-  handleTextInput(e) {
-    e.preventDefault();
-    if (this.state.name !== null) {
-      this.setState({
-        hideName: false
-      })
-    }
+handleTextInput(e) {
+  e.preventDefault();
+  if (this.state.name !== null) {
+    this.setState({
+      hideName: false
+    })
+  }
     this.setState({ text : e.target.value });
-  }
-
-  SearchUser() {
-    var context = this;
-    $.ajax({
-      url: '/history',
-      type: 'GET',
-      datatype: 'json'
-    })
-    .done((data) => {
-      success: (data) => {
-        context.setState({
-          users: data,
-          userList: true
-        })
-      }
-    })
-    .fail((err) => {
-      console.log('failed to GET', err);
-    })
   }
 
   render() {
@@ -123,6 +148,7 @@ class MessageForm extends React.Component {
   }
 }
 
+//socket IO container for displaying the MessageList
 class ChatBoxNav extends React.Component {
   constructor (props) {
     super (props);
@@ -137,6 +163,7 @@ class ChatBoxNav extends React.Component {
   }
 
   componentDidMount () {
+    this.returnMessage();
     socket.on('send:message', this.newMessage);
     console.log('props in chatbox', this.props.data)
     const nextEvent = this.props.data[0];
@@ -154,13 +181,37 @@ class ChatBoxNav extends React.Component {
     })
   }
 
+  scrollToBottom() {
+    $(".panel-body").animate({ scrollTop: $(document).height() }, "slow");
+    return false;
+  }
+    returnMessage() {
+       $.ajax({
+        type: 'GET',
+        url: '/message/return',
+        datatype: 'json'
+      })
+      .done((data) => {
+        console.log('messages return', data);
+        this.setState({
+          messages: data
+        })
+      })
+      .fail((err) => {
+        console.log('messages not returned');
+      })
+    }
+
   handleMessageSubmit(newMessage) {
     var messages = this.state.messages;
     messages.push(newMessage);
+    console.log('1',messages[messages.length-1]);
+
     this.setState({
       messages: messages
     })
     socket.emit('send:message', newMessage);
+    this.scrollToBottom();
   }
 
   handleChangeName(newName) {
@@ -175,6 +226,8 @@ class ChatBoxNav extends React.Component {
       this.setState({users, user: newName});
     });
   }
+
+
 
   render() {
     return (
