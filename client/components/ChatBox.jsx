@@ -44,13 +44,7 @@ class MessageForm extends React.Component {
     this.state = {
       text: '',
       name: ''
-<<<<<<< HEAD
-
     };
-=======
-    }
->>>>>>> 15e03ab7a6e1f923755cf1535e453418fe52942c
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleTextInput = this.handleTextInput.bind(this);
