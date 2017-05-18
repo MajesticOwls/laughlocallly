@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 var socket = io.connect();
 
 class Message extends React.Component {
@@ -8,9 +9,9 @@ class Message extends React.Component {
 
   render () {
     return (
-        <div>
-          <strong>{this.props.name}: </strong> {this.props.text}
-        </div>
+      <div>
+        <strong>{this.props.name}: </strong> {this.props.text}
+      </div>
     );
   }
 }
@@ -23,15 +24,10 @@ class MessageList extends React.Component {
   render () {
     return (
       <div>
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">Conversation</h3>
-          </div>
-          <div className="panel-body">
-            {this.props.messages.map((message, i) =>
-                <Message key={i} name={message.name} text={message.text} />
-            )}
-          </div>
+        <div className="panel-body">
+          {this.props.messages.map((message, i) =>
+              <Message key={i} name={message.name} text={message.text} />
+          )}
         </div>
       </div>
     );
@@ -43,9 +39,11 @@ class MessageForm extends React.Component {
     super(props);
     this.state = {
       text: '',
-      name: ''
-
-    };
+      name: null,
+      hideName: true,
+      users: [],
+      usersList: false
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
@@ -56,8 +54,8 @@ class MessageForm extends React.Component {
     e.preventDefault();
     var message = {
       name : this.state.name,
-      text : this.state.text
-    };
+      text : this.state.text,
+    }
     console.log('message', message);
     this.props.onMessageSubmit(message);
     this.setState({ text: '' });
@@ -68,23 +66,64 @@ class MessageForm extends React.Component {
     this.setState({ name : e.target.value });
   }
 
+
+  hideName() {
+    this.setState({
+      hideName: false
+    })
+  }
+
+
+
   handleTextInput(e) {
     e.preventDefault();
+    if (this.state.name !== null) {
+      this.setState({
+        hideName: false
+      })
+    }
     this.setState({ text : e.target.value });
+  }
+
+  SearchUser() {
+    var context = this;
+    $.ajax({
+      url: '/history',
+      type: 'GET',
+      datatype: 'json'
+    })
+    .done((data) => {
+      success: (data) => {
+        context.setState({
+          users: data,
+          userList: true
+        })
+      }
+    })
+    .fail((err) => {
+      console.log('failed to GET', err);
+    })
   }
 
   render() {
     return(
+      <div>
       <form onSubmit={this.handleSubmit}>
-        <input type='text' placeholder="Your Name Here" className="form-control" onChange={this.handleNameInput} value={this.state.name} />
-        <input type='text' placeholder="Your Message Here" className="form-control" onChange={this.handleTextInput} value={this.state.text} />
-        <button type="submit" className="btn-sm btn-primary">Submit</button>
-      </form>
+      {this.state.hideName ?
+        <input type='text' placeholder="Your Name Here" className="form-control inputText" onChange={this.handleNameInput} value={this.state.name} /> :
+        null
+        }
+        <input type='text' placeholder="Your Message Here" className="form-control inputText" onChange={this.handleTextInput} value={this.state.text} />
+        <button onChange={this.hideName} hidden="hidden" type="submit" className="btn-sm btn-primary">Submit</button>
+
+        </form>
+      {this.state.hideName ? null : <button onClick={this.SearchUsers} className= "btn">{this.state.userList ? <div>Main Chat</div> : <div>Users</div>}</button>}
+      </div>
     );
   }
 }
 
-class ChatBox extends React.Component {
+class ChatBoxNav extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
@@ -92,7 +131,7 @@ class ChatBox extends React.Component {
       users: [],
       messages: [],
       text: ''
-    };
+    }
     this.newMessage = this.newMessage.bind(this);
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
   }
@@ -140,29 +179,11 @@ class ChatBox extends React.Component {
   render() {
     return (
       <div>
-        <div className='container'>
-          <ul className="media-list">
-            <li className="media">
-              <div className="media-left">
-                <a href="#">
-                  <img className="media-object" src={this.state.nextEvent.photo_url} alt="..." />
-                </a>
-              </div>
-              <div className="media-body">
-                <h2><small>Next Event:</small> </h2>
-                <h4>{this.state.nextEvent.name}</h4>
-                <p><strong>Date:</strong> {this.state.nextEvent.date}</p>
-                <p><strong>Time:</strong> {this.state.nextEvent.start_time}</p>
-                <p><strong>Description:</strong> {this.state.nextEvent.description}</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div className='container'>
+        <div className='container panel-body'>
           <MessageList messages={this.state.messages} />
         </div>
-        <div className='container'>
+
+        <div className='container chatNav'>
           <MessageForm onMessageSubmit={this.handleMessageSubmit}/>
         </div>
       </div>
@@ -170,4 +191,4 @@ class ChatBox extends React.Component {
   }
 }
 
-export default ChatBox;
+export default ChatBoxNav;
