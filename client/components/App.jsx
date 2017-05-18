@@ -11,7 +11,7 @@ import ComedianDash from '../containers/ComedianDash.jsx'
 import ComedianList from './ComedianList.jsx';
 import ComedianProfile from '../containers/ComedianProfile.jsx'
 import BookPage from '../containers/BookPage.jsx';
- 
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -41,7 +41,7 @@ class App extends React.Component {
       })
     })
   }
-  
+
   render () {
     return (
 
@@ -56,8 +56,8 @@ class App extends React.Component {
         <Route path="/book" component={BookPage} />
         <Route path="/ComedianDash" component={ComedianDash} />
         <Route path="/chatBox" component={(props) => <ChatBox data={this.state.allEvents}{...props} />} />
-        <Route 
-        path="/profile/:name" 
+        <Route
+        path="/profile/:name"
         component={(props) => {
             // console.log(props);
             const profiles = this.state.comedians.filter((comedian) => props.match.params.name === comedian.name);
@@ -65,17 +65,12 @@ class App extends React.Component {
             return <ComedianProfile comedian={profiles[0]} {...props} />
       }}/>
 
-        
-      
+
+
 
     </div>
     )
   }
 }
 
-export default App; 
-
-
-
-      
-
+export default App;
