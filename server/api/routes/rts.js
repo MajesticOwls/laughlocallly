@@ -23,6 +23,8 @@ router.post('/signup', cntrl.signup);
 router.post('/bookcomedian', cntrl.bookcomedian);
 router.get('/getSpecificVenue', cntrl.getSpecificVenue);
 
+router.put('/updateComedian', cntrl.updateComedian)
+
 
 
 
