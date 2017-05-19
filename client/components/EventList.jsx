@@ -15,10 +15,10 @@ class EventList extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleClick() {
-    console.log('props', this.props.data);
     let context= this;
     let filteredEvents = this.props.data.filter(function(event) {
       let lowerCaseEvent = event.name.toLowerCase();
@@ -28,7 +28,14 @@ class EventList extends React.Component {
     this.setState({
       filteredEvents: filteredEvents,
       firstLoad: false,
+      value: '',
     });
+  }
+
+  handleKeyPress(e) {
+    if ( e.key === 'Enter' ) {
+      this.handleClick();
+    }
   }
 
   handleChange(e) {
@@ -42,7 +49,7 @@ class EventList extends React.Component {
       <div>
         <h3>Upcoming Events:</h3>
         <div>
-          <input value = {this.state.value} onSubmit={this.handleClick} onChange = {this.handleChange} type="text"  id="user"/>
+          <input value = {this.state.value} onKeyPress={this.handleKeyPress} onChange = {this.handleChange} type="text"  id="user"/>
           <button onClick={this.handleClick} type="button" >Search</button>
         </div>
         <div className="row">
