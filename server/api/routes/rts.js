@@ -29,6 +29,7 @@ router.put('/updateComedian', cntrl.updateComedian);
 //for saving mesaages
 router.post('/message/save', cntrl.messageSave);
 router.get('/message/return', cntrl.returnAllMessages);
+router.post('/remove/data', cntrl.changeEvent)
 
 
 

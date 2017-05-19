@@ -247,3 +247,30 @@ module.exports.returnAllMessages = function(req, res) {
     res.json(result);
   })
 };
+
+module.exports.changeEvent = function(req,res) {
+  console.log('in change',req.body);
+  var updateString0 = `UPDATE events SET status = 'booked' WHERE id = ${req.body.key};`
+  var updateString1 = `UPDATE events SET id_comedians = ${req.body.id+1} WHERE id = ${req.body.key};`
+  db.query(updateString0, function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+
+      db.query(updateString1, function(err,result) {
+        if (err) {
+          console.log(err);
+        } else {
+          var queryString2 = `SELECT * FROM events WHERE status = 'open'`;
+          db.query(queryString2, function(err, result) {
+            res.json(result);
+          })
+        }
+      })
+
+
+    }
+
+  })
+
+}
