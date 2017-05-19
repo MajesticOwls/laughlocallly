@@ -8,17 +8,24 @@ class ManageEventsPage extends React.Component{
     super(props);  
   
     this.state = {
-      comedianInfo: this.props.location.state.comedianInfo
+      comedianInfo: this.props.location.state.comedianInfo,
+      update: false
     }
+    this.onUpdate = this.onUpdate.bind(this);
   }
 
+  onUpdate() {
+    this.setState({
+      update: !this.state.update
+    });
+  }
 
   render () {
     return (
      <div> 
        <h1>Manage Events</h1>
-       <PendingEventsList comedianInfo={this.state.comedianInfo}/>  
-       <BookedEventsList comedianInfo ={this.state.comedianInfo}/> 
+       <PendingEventsList update={this.onUpdate} comedianInfo={this.state.comedianInfo}/>
+       <BookedEventsList update={this.state.update} comedianInfo ={this.state.comedianInfo}/>
      </div>
     )
   }
