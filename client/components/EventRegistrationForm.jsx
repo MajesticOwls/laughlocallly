@@ -23,7 +23,7 @@ class EventRegistrationForm extends React.Component {
     console.log({email: audience.email, name: audience.name, phone: audience.phone, id: audience.id_events});
     $.post('/audienceRegistration', audience)
       .done(function (data) {
-        console.log('Sucessfully Registered', data);
+        console.log('Successfully Registered', data);
       });
     this.setState({
       audience: {
@@ -35,6 +35,7 @@ class EventRegistrationForm extends React.Component {
     });
     alert("You have successfully RSVP'd");
     this.props.audienceCount();
+    this.props.close();
   }
 
   handleAudienceInput(e){
