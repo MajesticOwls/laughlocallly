@@ -55,13 +55,35 @@ class BookVenueList extends React.Component {
   //     console.error('Error in denyEvent', err);
   //   })
   // }
+  changeRender(data) {
+    var context = this;
+    var userid = this.props.user.history.location.state.comedianInfo.id;
+    $.ajax({
+      type: 'POST',
+      url: '/remove/data',
+      contentType: 'application/JSON',
+      data: JSON.stringify({
+              key: data.id,
+              id: userid
+            })
+    })
+    .done((data) => {
+      context.setState({
+        openVenueList: data
+      })
+      console.log('updated venueList', data);
+    })
+    .fail((err) => {
+      console.log('did not update events');
+    })
+  }
 
   render() {
     console.log('open events list', this.state.openVenueList)
     return (
-      <div className="col-sm-6 col-md-4"> 
+      <div className="col-sm-6 col-md-4">
         <h3>Open Event Details!</h3>
-        {this.state.openVenueList.length ? this.state.openVenueList.map( (open) => <BookVenue open={open} key={open.id}/> ) : <h3>No Open Events</h3>} 
+        {this.state.openVenueList.length ? this.state.openVenueList.map( (open) => <BookVenue open={open} key={open.id} list={this.changeRender.bind(this)}/> ) : <h3>No Open Events</h3>}
       </div>
     );
   }

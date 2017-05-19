@@ -27,8 +27,11 @@ class ComedianDash extends React.Component{
                   <li><Link to={{
                     pathname: "/editcomedianprofile",
                     state: { comedianInfo: this.props.location.state.comedianInfo }
-                  }} > Edit Profile </Link></li>   
-                  <li><Link to="/bookvenue"> Open Gigs </Link></li>      
+                  }} > Edit Profile </Link></li>
+                  <li><Link to={{
+                    pathname: "/bookvenue",
+                    state: { comedianInfo: this.props.location.state.comedianInfo }
+                    }} > Open Gigs </Link></li>
                   <li><Link to={{
                     pathname: "/manageevents",
                     state: { comedianInfo: this.props.location.state.comedianInfo }
@@ -45,5 +48,5 @@ class ComedianDash extends React.Component{
     }
     return (<div> Please login or signup </div>)
   }
-} 
+}
 export default ComedianDash;
