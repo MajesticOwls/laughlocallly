@@ -18,8 +18,15 @@ class App extends React.Component {
 
     this.state = {
       comedians: [],
-      allEvents: []
+      allEvents: [],
+      loggedIn: false
     }
+
+    this.isLoggedIn = this.isLoggedIn.bind(this);
+  }
+
+  isLoggedIn() {
+    this.setState({ loggedIn: !this.state.loggedIn });
   }
 
   componentWillMount(){
@@ -46,14 +53,14 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <Navigation />
+          <Navigation loggedIn={this.state.loggedIn} isLoggedIn={this.isLoggedIn} />
         </div>
         <Route exact path='/' component={EventPage} />
         <Route path="/comedianprofiles" component={(props) => <ComedianList comedians={this.state.comedians}{...props} />} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/signup" component={SignupPage} />
+        <Route path="/login/" component={props => <LoginPage isLoggedIn={this.isLoggedIn} {...props} />} />
+        <Route path="/signup" component={props => <SignupPage isLoggedIn={this.isLoggedIn} {...props} />} />
         <Route path="/book" component={BookPage} />
-        <Route path="/ComedianDash" component={ComedianDash} />
+        <Route path="/ComedianDash" component={props => <ComedianDash loggedIn={this.state.loggedIn} {...props} />} />
         <Route path="/chatBox" component={(props) => <ChatBox data={this.state.allEvents}{...props} />} />
         <Route
         path="/profile/:name"

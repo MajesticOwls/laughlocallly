@@ -11,24 +11,23 @@ import $ from 'jquery';
 
 class SignupPage extends React.Component{
   constructor(props){
-  super(props);  
-  
-  this.state = {
-    user: {
-      name: "",
-      email: "",
-      password: "",
-      website: "",
-      phone: "",
-      twitter: "",
-      photo_url: "",
-      bio: ""
-    }
-  };
+    super(props);
 
-  this.handleUserInput = this.handleUserInput.bind(this);
-  this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
-  
+    this.state = {
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        website: "",
+        phone: "",
+        twitter: "",
+        photo_url: "",
+        bio: ""
+      }
+    };
+
+    this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
   }
 
   handleSignupSubmit(e){
@@ -48,6 +47,7 @@ class SignupPage extends React.Component{
           alert('There is already an email associated with this account. Please click on the log-in tab to sign-in');
           // context.props.history.push('/login');
         } else {
+          context.props.isLoggedIn();
           alert('Successful sign-up!');
           context.props.history.push({
             pathname: '/comediandash',
