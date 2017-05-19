@@ -15,14 +15,15 @@ class SignupPage extends React.Component{
 
     this.state = {
       user: {
-        name: "",
-        email: "",
-        password: "",
-        website: "",
-        phone: "",
-        twitter: "",
-        photo_url: "",
-        bio: ""
+        name: '',
+        email: '',
+        password: '',
+        website: '',
+        phone: '',
+        twitter: '',
+        photo_url: '',
+        video_url: '',
+        bio: ''
       }
     };
 
@@ -107,6 +108,11 @@ class SignupPage extends React.Component{
           <div className="form-group">
             <label> Link a Photo of Yourself! </label>
             <input type='text' placeholder="url" name="photo_url" className="form-control" onChange={this.handleUserInput} value={this.state.user.photo_url} />
+          </div>
+
+          <div className="form-group">
+            <label> Add a Video </label>
+            <input type='text' placeholder="YouTube video url" name="video_url" className="form-control" onChange={this.handleUserInput} value={this.state.user.video_url} />
           </div>
 
           <div className="form-group">
