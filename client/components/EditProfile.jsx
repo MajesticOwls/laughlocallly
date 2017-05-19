@@ -89,6 +89,10 @@ class EditProfile extends React.Component {
           </div>
 
           <div className="form-group">
+            <input type='text' placeholder="Video url" name="video_url" className="form-control" onChange={this.handleInput} value={null} />
+          </div>
+
+          <div className="form-group">
             <input type='text' placeholder="Phone Number" name="phone" className="form-control" onChange={this.handleInput} value={null} />
           </div>
 
