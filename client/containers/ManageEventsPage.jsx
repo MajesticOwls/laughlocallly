@@ -10,15 +10,19 @@ class ManageEventsPage extends React.Component{
     this.state = {
       comedianInfo: this.props.location.state.comedianInfo
     }
+    this.onAcceptChange = this.onAcceptChange.bind(this);
   }
 
+  onAcceptChange() {
+    this.forceUpdate();
+  }
 
   render () {
     return (
      <div> 
        <h1>Manage Events</h1>
-       <PendingEventsList comedianInfo={this.state.comedianInfo}/>  
-       <BookedEventsList comedianInfo ={this.state.comedianInfo}/> 
+       <PendingEventsList comedianInfo={this.state.comedianInfo}/>
+       <BookedEventsList comedianInfo ={this.state.comedianInfo}/>
      </div>
     )
   }

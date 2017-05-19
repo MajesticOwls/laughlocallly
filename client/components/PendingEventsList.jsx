@@ -26,17 +26,19 @@ class PendingEvents extends React.Component {
       })
     })
     .fail(err => {
-      console.error('Error occured while getting pending data', err);
+      console.error('Error occurred while getting pending data', err);
     })
   }
 
   acceptEvent(eventName) {
     const pendingList = this.state.pendingEventList;
     const eventPos = pendingList.map(event => event.name).indexOf(eventName);
+    let context= this;
     console.log('Accept Event id', eventPos);
     $.get('updateStatusToBooked', {id: pendingList[eventPos].id})
     .done(data => {
-      console.log('Success while acceping data event to book', data);
+      console.log('Success while accepting data event to book', data);
+      context.getPendingEvent();
     })
     .fail(err => {
       console.error('Error in accpetEvent', err);
