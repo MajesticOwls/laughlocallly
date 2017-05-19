@@ -13,7 +13,7 @@ class ComedianDash extends React.Component{
   }
 
   render () {
-    const loggedIn = !!this.props.location.state;
+    const loggedIn = !!this.props.location.state && this.props.loggedIn;
     if (loggedIn) {
       return (
         <BrowserRouter>

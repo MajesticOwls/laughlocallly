@@ -12,6 +12,9 @@ class Navigation extends React.Component {
     this.state = {
       chatNav: false
     }
+
+    this.inOrOut = this.inOrOut.bind(this);
+    this.handleLogClick = this.handleLogClick.bind(this);
   }
 
   hideChat() {
@@ -23,6 +26,14 @@ class Navigation extends React.Component {
     console.log(this.state.chatNav)
   }
 
+  inOrOut() {
+    return this.props.loggedIn ? 'Log Out' : 'Log In';
+  }
+
+  handleLogClick() {
+    if (this.props.loggedIn) this.props.isLoggedIn();
+  }
+
   render () {
     return (
       <div className="Navigation">
@@ -32,9 +43,9 @@ class Navigation extends React.Component {
           </div>
           <div className="container-fluid navbar-right">
             <ul className="nav navbar-nav">
-              <li> <Link to="/comedianprofiles"> Book a Comedian </Link> </li>
-              <li> <Link to="/login"> Log In </Link> </li>
-              <li> <Link to="/signup"> Sign Up </Link> </li>
+              <li><Link to="/comedianprofiles"> Book a Comedian </Link></li>
+              <li onClick={this.handleLogClick} ><Link to="/login">{this.inOrOut()}</Link></li>
+              <li><Link to="/signup"> Sign Up </Link></li>
             </ul>
           </div>
         </nav>
