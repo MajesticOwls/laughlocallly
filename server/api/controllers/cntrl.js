@@ -106,7 +106,7 @@ module.exports.signup = function(req, res) {
       var queryString = `INSERT INTO comedians
         (name, email, password, website, phone, twitter, photo_url, bio, salt, video_url) VALUES
         ('${ob.name}', '${ob.email}', '${ob.password}', '${ob.website}', '${ob.phone}',
-        '${ob.twitter}', '${ob.photo_url}', '${ob.bio}', '${ob.salt}', 'todolater')`;
+        '${ob.twitter}', '${ob.photo_url}', '${ob.bio}', '${ob.salt}', '${ob.video_url}')`;
       db.query(queryString, function(err, result) {
         console.log('comedian info inserted into comedians table');
         res.json({

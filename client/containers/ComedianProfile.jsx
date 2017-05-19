@@ -8,13 +8,15 @@ class ComedianProfile extends React.Component {
     super(props);
 
     this.state = {
-      bookedEventList: []
+      bookedEventList: [],
+      youTubeId: ''
     }
 
   }
 
   componentDidMount() {
     this.getBookedEvents();
+    this.getYouTubeId();
   }
 
   getBookedEvents() {
@@ -25,10 +27,15 @@ class ComedianProfile extends React.Component {
         bookedEventList: data
       })
     })
-  } 
+  }
+
+  getYouTubeId() {
+    const url = this.props.comedian.video_url;
+    this.setState({ youTubeId: url.includes('youtu.be') ? url.slice(17) : url.slice(32) });
+  }
 
   render () {
-    const { name, bio, id, video_url } = this.props.comedian;
+    const { name, bio, id } = this.props.comedian;
 
     return (
       <div className="container">
@@ -39,7 +46,7 @@ class ComedianProfile extends React.Component {
             </div>
             <p className="bio"> {bio} </p>
             <div>
-              <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video_url.slice(32)}`} frameBorder='0' allowFullScreen />
+              <iframe width="560" height="315" src={`https://www.youtube.com/embed/${this.state.youTubeId}`} frameBorder='0' allowFullScreen />
             </div>
           </div>
             <div className="container sidebar">
