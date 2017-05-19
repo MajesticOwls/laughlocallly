@@ -8,34 +8,45 @@ import EventDetail from './EventDetail.jsx';
 class EventList extends React.Component {
   constructor (props) {
     super(props);
-    console.log(props.data);
     this.state = {
       value: '',
-    }
+      filteredEvents: [],
+      firstLoad: true,
+    };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick(e) {
-    console.log("Hello");
+  handleClick() {
+    console.log('props', this.props.data);
+    let context= this;
+    let filteredEvents = this.props.data.filter(function(event) {
+      let lowerCaseEvent = event.name.toLowerCase();
+      let lowerCaseValue = context.state.value.toLowerCase();
+      return lowerCaseEvent.includes(lowerCaseValue);
+    });
+    this.setState({
+      filteredEvents: filteredEvents,
+      firstLoad: false,
+    });
   }
 
   handleChange(e) {
     this.setState({
       value: e.target.value,
-    }, function() {console.log(this.state.value)});
+    });
   }
 
   render() {
     return (
       <div>
         <h3>Upcoming Events:</h3>
-        <div class="form-group">
-          <input value = {this.state.value} onChange = {this.handleChange} type="text" class="form-control" id="user"/>
-          <button onClick={this.handleClick} type="button" class="btn btn-primary">Search</button>
+        <div>
+          <input value = {this.state.value} onSubmit={this.handleClick} onChange = {this.handleChange} type="text"  id="user"/>
+          <button onClick={this.handleClick} type="button" >Search</button>
         </div>
         <div className="row">
-          {this.props.data.map( (event) => <EventListItem event={event} key={event.name}/> )}
+          {this.state.firstLoad ? this.props.data.map( (event) => <EventListItem event={event} key={event.name}/> ) : this.state.filteredEvents.map( (event) => <EventListItem event={event} key={event.name}/> ) }
         </div>
       </div>
     );

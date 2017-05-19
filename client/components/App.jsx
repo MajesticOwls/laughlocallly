@@ -42,7 +42,6 @@ class App extends React.Component {
 
     $.get('/getAllEventsForEventPage')
     .done(function (data){
-      console.log('all events data', data);
       context.setState({
         allEvents: data
       })
