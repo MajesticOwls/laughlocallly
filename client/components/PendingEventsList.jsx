@@ -39,6 +39,7 @@ class PendingEvents extends React.Component {
     .done(data => {
       console.log('Success while accepting data event to book', data);
       context.getPendingEvent();
+      this.props.update();
     })
     .fail(err => {
       console.error('Error in accpetEvent', err);
