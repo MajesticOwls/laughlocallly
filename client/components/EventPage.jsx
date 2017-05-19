@@ -22,7 +22,6 @@ class EventPage extends React.Component {
     var that = this;
     $.get('/getAllEventsForEventPage')
     .done(function (data){
-      // console.log('data', data);
       that.setState({
         allEvents: data
       })
