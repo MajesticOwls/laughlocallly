@@ -5,8 +5,8 @@ import BookVenueList from '../components/BookVenueList.jsx';
 
 class BookVenuePage extends React.Component{
   constructor(props){
-  super(props);  
-  
+  super(props);
+
   this.state = {}
   }
 
@@ -14,7 +14,7 @@ class BookVenuePage extends React.Component{
   render () {
     return (
       <div> Book Venue
-        <BookVenueList />
+        <BookVenueList user={this.props}/>
       </div>
     )
   }

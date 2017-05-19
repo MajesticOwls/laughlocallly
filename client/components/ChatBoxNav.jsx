@@ -142,7 +142,6 @@ handleTextInput(e) {
         <button onChange={this.hideName} hidden="hidden" type="submit" className="btn-sm btn-primary">Submit</button>
 
         </form>
-      {this.state.hideName ? null : <button onClick={this.SearchUsers} className= "btn">{this.state.userList ? <div>Main Chat</div> : <div>Users</div>}</button>}
       </div>
     );
   }
