@@ -9,6 +9,21 @@ class EventList extends React.Component {
   constructor (props) {
     super(props);
     console.log(props.data);
+    this.state = {
+      value: '',
+    }
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleClick(e) {
+    console.log("Hello");
+  }
+
+  handleChange(e) {
+    this.setState({
+      value: e.target.value,
+    }, function() {console.log(this.state.value)});
   }
 
   render() {
@@ -16,8 +31,8 @@ class EventList extends React.Component {
       <div>
         <h3>Upcoming Events:</h3>
         <div class="form-group">
-          <input type="text" class="form-control" id="user"/>
-          <button type="button" class="btn btn-primary">Search</button>
+          <input value = {this.state.value} onChange = {this.handleChange} type="text" class="form-control" id="user"/>
+          <button onClick={this.handleClick} type="button" class="btn btn-primary">Search</button>
         </div>
         <div className="row">
           {this.props.data.map( (event) => <EventListItem event={event} key={event.name}/> )}
