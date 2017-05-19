@@ -14,6 +14,7 @@ class BookVenue extends React.Component {
   render() {
     console.log('open props', this.props.open)
     return (
+    <div className="col-sm-6 col-md-4">
       <div className="thumbnail">
         <img src={this.props.open.photo_url} alt="..." />
         <div className="caption">
@@ -25,6 +26,7 @@ class BookVenue extends React.Component {
           {/*<button onClick={() => this.props.cancel(this.props.open.name)}>Cancel</button>*/}
         </div>
       </div>
+    </div>  
     );
   }
 }
