@@ -24,7 +24,6 @@ class BookedEvents extends React.Component {
   getBookedEvents() {
     $.get('/getBookedEvents', {id: this.props.comedianInfo.id + 1})
     .done(data => {
-      console.log('data received', data)
       this.setState({
         bookedEventList: data
       })
