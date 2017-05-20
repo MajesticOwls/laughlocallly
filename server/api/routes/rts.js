@@ -31,6 +31,8 @@ router.post('/message/save', cntrl.messageSave);
 router.get('/message/return', cntrl.returnAllMessages);
 router.post('/remove/data', cntrl.changeEvent)
 
+//for Stripe API
+router.post('/stripe', cntrl.AcceptedEvent);
 
 
 module.exports = router;
