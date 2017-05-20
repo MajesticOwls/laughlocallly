@@ -1,18 +1,22 @@
 import React from 'react';
 import Modal from 'react-modal';
 import EventRegistrationForm from './EventRegistrationForm.jsx';
-import $ from 'jquery';
 
 
 class PendingEvent extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {},
-    modalIsOpen = false
+    this.state = {
+      ModalIsOpen: true
+    }
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   acceptJob() {
     this.props.accept(this.props.pending.name);
+    var context = this;
     $.ajax({
       type:'POST',
       url: '/stripe',
@@ -22,6 +26,7 @@ class PendingEvent extends React.Component {
       })
     })
     .done((data) => {
+      context.openModal();
       console.log('receipt send via email');
     })
     .fail((err) => {
@@ -31,16 +36,36 @@ class PendingEvent extends React.Component {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    console.log('modal Open');
+    this.setState({ModalIsOpen: true});
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ModalIsOpen: false});
   }
-
 
   render() {
     console.log('pending props', this.props.pending)
+    const customStyles = {
+      overlay : {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        background: 'rgba(0, 0, 0, 0.15)'
+     },
+     content : {
+        position: 'absolute',
+        background: '#fff',
+        top: 150,
+        left: '10%',
+        right: '10%',
+        bottom: 100,
+        padding: 30,
+        border: '2px solid #444'
+     }
+    };
     return (
       <div>
         <div className="thumbnail">
@@ -52,8 +77,9 @@ class PendingEvent extends React.Component {
             <p><strong>Description:</strong> {this.props.pending.description}</p>
             <button className="btn btn-primary btn-sm" onClick={this.acceptJob.bind(this)}>Accept</button>
             <button className="btn btn-primary btn-sm" onClick={() => this.props.deny(this.props.pending.name)}>Deny</button>
+
             <Modal
-              isOpen={this.state.modalIsOpen}
+              isOpen={this.state.ModalIsOpen}
               onRequestClose={this.closeModal}
               style={customStyles}
               contentLabel="Register Popup"
