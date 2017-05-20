@@ -44,6 +44,26 @@ class PendingEvent extends React.Component {
     this.setState({ModalIsOpen: false});
   }
 
+  acceptJob() {
+    this.props.accept(this.props.pending.name);
+    $.ajax({
+      type:'POST',
+      url: '/stripe',
+      contentType: 'application/JSON',
+      data: JSON.stringify({
+        accept: this.props.pending
+      })
+    })
+    .done((data) => {
+      console.log('receipt send via email');
+    })
+    .fail((err) => {
+      console.log('did not send receipt');
+    })
+
+  }
+
+
   render() {
     console.log('pending props', this.props.pending)
     const customStyles = {
