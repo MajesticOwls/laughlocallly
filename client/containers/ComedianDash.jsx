@@ -13,28 +13,28 @@ class ComedianDash extends React.Component{
   }
 
   render () {
-    const loggedIn = !!this.props.location.state && this.props.loggedIn;
+    const loggedIn = !!this.props.location.state && this.props.currentComedian;
     if (loggedIn) {
       return (
         <BrowserRouter>
           <div className="container">
             <nav className="navbar navbar-lower comedianNav">
               <div className="navbar-header">
-                <a className="navbar-brand navbar-left" href="/"> Welcome, {this.props.location.state.comedianInfo.name}! </a>
+                <a className="navbar-brand navbar-left" href="/"> Welcome, {this.props.currentComedian.name}! </a>
               </div>
               <div className="container-fluid navbar-right">
                 <ul className="nav navbar-nav">
                   <li><Link to={{
                     pathname: "/editcomedianprofile",
-                    state: { comedianInfo: this.props.location.state.comedianInfo }
+                    state: { comedianInfo: this.props.currentComedian }
                   }} > Edit Profile </Link></li>
                   <li><Link to={{
                     pathname: "/bookvenue",
-                    state: { comedianInfo: this.props.location.state.comedianInfo }
+                    state: { comedianInfo: this.props.currentComedian }
                     }} > Open Gigs </Link></li>
                   <li><Link to={{
                     pathname: "/manageevents",
-                    state: { comedianInfo: this.props.location.state.comedianInfo }
+                    state: { comedianInfo: this.props.currentComedian }
                   }} > Manage Events </Link></li>
                 </ul>
               </div>

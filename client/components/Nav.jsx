@@ -27,11 +27,11 @@ class Navigation extends React.Component {
   }
 
   inOrOut() {
-    return this.props.loggedIn ? 'Log Out' : 'Log In';
+    return this.props.currentComedian ? 'Log Out' : 'Log In';
   }
 
   handleLogClick() {
-    if (this.props.loggedIn) this.props.isLoggedIn();
+    if (this.props.currentComedian) this.props.changeComedian(null);
   }
 
   render () {
