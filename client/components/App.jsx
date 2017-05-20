@@ -59,7 +59,7 @@ class App extends React.Component {
         <Route path="/login/" component={props => <LoginPage changeComedian={this.changeComedian} {...props} />} />
         <Route path="/signup" component={props => <SignupPage changeComedian={this.changeComedian} {...props} />} />
         <Route path="/book" component={BookPage} />
-        <Route path="/ComedianDash" component={props => <ComedianDash currentComedian={this.state.currentComedian} changeComedian={this.changeComedian} {...props} />} />
+        <Route path="/comediandash" component={props => <ComedianDash currentComedian={this.state.currentComedian} changeComedian={this.changeComedian} {...props} />} />
         <Route path="/chatBox" component={(props) => <ChatBox data={this.state.allEvents}{...props} />} />
         <Route
         path="/profile/:name"
