@@ -9,7 +9,7 @@ class BookedEvent extends React.Component {
   render() {
     return (
       <div className="thumbnail">
-        <img src={this.props.booked.photo_url} alt="..." />        
+        <img src={this.props.booked.photo_url} alt="..." />
         <div className="caption">
           <h3>{this.props.booked.name}</h3>
           <p><strong>Date:</strong> {this.props.booked.date}</p>

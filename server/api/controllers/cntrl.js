@@ -1,7 +1,8 @@
-var express = require('express')
-var router = express.Router()
-var mysql = require('mysql')
-var db = require('../../../database/index.js')
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
+var db = require('../../../database/index.js');
+var stripe = require('stripe')('sk_test_np8ojqYV5pNwaLN2dtx7ubmt');
 
 
 // db.connect();
@@ -274,10 +275,40 @@ module.exports.changeEvent = function(req,res) {
           })
         }
       })
-
-
     }
-
   })
+}
 
+module.exports.AcceptedEvent = function(req,res) {
+  console.log(req.body);
+var firstString = `SELECT * FROM events WHERE status = 'open'`
+
+stripe.customers.create({
+  email: "jeffreychen41@gmail.com"
+})
+.then(function(customer){
+  return stripe.customers.createSource(customer.id, {
+    source: {
+       object: 'card',
+       exp_month: 10,
+       exp_year: 2018,
+       number: '4242 4242 4242 4242',
+       cvc: 100
+    }
+  })
+})
+.then(function(customer) {
+  // YOUR CODE: Save the customer ID and other info in a database for later.
+  //console.log(customer);
+  return stripe.charges.create({
+    description: "the show",
+    customer: customer.customer,
+    receipt_email: 'jeffreychen41@gmail.com',
+    amount: 100,
+    currency: "usd"
+  })
+})
+.then(function(charge) {
+    res.end();
+});
 }
