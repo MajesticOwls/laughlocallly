@@ -40,24 +40,21 @@ class ComedianProfile extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-8">
+          <div className="col-md-16">
             <div className="comedianheader">
               <h1> {name} </h1>
             </div>
             <p className="bio"> {bio} </p>
             <div>
               <iframe width="560" height="315" src={`https://www.youtube.com/embed/${this.state.youTubeId}`} frameBorder='0' allowFullScreen />
-            </div>
-          </div>
-            <div className="container sidebar">
-              <div className="col-md-4">
+              <div className="upcoming-events">
                 <Link to={{ pathname: "/book", state: {comedian: this.props.comedian} }}><button value={id} type="button" className="btn btn-default "> Book </button></Link>
-                <div className="upcoming-events">
-                  <b>Upcoming Events</b>
-                  <div>
-                    {this.state.bookedEventList.map(event => {return (<ComedianEvents event={event}/>) })}
-                  </div>
+                <br/>
+                <b>{name} has {this.state.bookedEventList.length} Upcoming Events</b>
+                <div className="row">
+                  {this.state.bookedEventList.map(event => {return (<ComedianEvents event={event}/>) })}
                 </div>
+              </div>
             </div>
           </div>
         </div>
