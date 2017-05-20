@@ -14,7 +14,7 @@ class BookVenuePage extends React.Component{
   render () {
     return (
       <div> Book Venue
-        <BookVenueList user={this.props}/>
+        <BookVenueList currentComedian={this.props.currentComedian}/>
       </div>
     )
   }

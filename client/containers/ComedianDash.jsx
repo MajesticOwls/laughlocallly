@@ -13,7 +13,7 @@ class ComedianDash extends React.Component{
   }
 
   render () {
-    const loggedIn = !!this.props.location.state && this.props.currentComedian;
+    const loggedIn = this.props.currentComedian;
     if (loggedIn) {
       return (
         <BrowserRouter>
@@ -24,24 +24,18 @@ class ComedianDash extends React.Component{
               </div>
               <div className="container-fluid navbar-right">
                 <ul className="nav navbar-nav">
-                  <li><Link to={{
-                    pathname: "/editcomedianprofile",
-                    state: { comedianInfo: this.props.currentComedian }
-                  }} > Edit Profile </Link></li>
+                  <li><Link to="/editcomedianprofile"> Edit Profile </Link></li>
                   <li><Link to={{
                     pathname: "/bookvenue",
                     state: { comedianInfo: this.props.currentComedian }
                     }} > Open Gigs </Link></li>
-                  <li><Link to={{
-                    pathname: "/manageevents",
-                    state: { comedianInfo: this.props.currentComedian }
-                  }} > Manage Events </Link></li>
+                  <li><Link to="/manageevents"> Manage Events </Link></li>
                 </ul>
               </div>
             </nav>
-            <Route path="/editcomedianprofile" component={EditProfile} />
-            <Route path="/bookvenue" component={BookVenuePage} />
-            <Route path="/manageevents" component={ManageEventsPage} />
+            <Route path="/editcomedianprofile" component={props => <EditProfile currentComedian={this.props.currentComedian} changeComedian={this.props.changeComedian} {...props} />} />
+            <Route path="/bookvenue" component={props => <BookVenuePage currentComedian={this.props.currentComedian} {...props} />} />
+            <Route path="/manageevents" component={props => <ManageEventsPage currentComedian={this.props.currentComedian} {...props} />} />
           </div>
         </BrowserRouter>
       )

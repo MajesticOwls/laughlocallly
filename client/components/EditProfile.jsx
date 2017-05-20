@@ -7,7 +7,7 @@ class EditProfile extends React.Component {
     super(props);
 
     this.state = {
-      user: this.props.location.state.comedianInfo,
+      user: this.props.currentComedian,
       passwordChange: false
     }
 
@@ -45,10 +45,8 @@ class EditProfile extends React.Component {
         alert('That email is already in use. Please enter another');
       } else {
         alert('Profile Updated!');
-        context.props.history.push({
-          pathname: '/comediandash',
-          state: { comedianInfo: data }
-        })
+        context.props.changeComedian(user);
+        context.props.history.push({ pathname: '/comediandash' });
       }
     })
     .fail((error) => {

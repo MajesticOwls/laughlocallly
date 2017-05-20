@@ -50,10 +50,7 @@ class SignupPage extends React.Component{
         } else {
           context.props.changeComedian(comedianInfo);
           alert('Successful sign-up!');
-          context.props.history.push({
-            pathname: '/comediandash',
-            state: {comedianInfo: comedianInfo}
-          })
+          context.props.history.push({ pathname: '/comediandash' });
         }
       },
       error: function(error) {
