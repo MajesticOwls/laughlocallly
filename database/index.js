@@ -29,7 +29,7 @@ dp.connectAsync()
         id INTEGER NOT NULL AUTO_INCREMENT,
         user VARCHAR(255) NOT NULL,
         text VARCHAR(1000) NOT NULL,
-        PRIMARY KEY('id')
+        PRIMARY KEY(id)
       )`)
   })
   .then(() => {
