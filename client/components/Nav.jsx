@@ -16,6 +16,7 @@ class Navigation extends React.Component {
     this.inOrOut = this.inOrOut.bind(this);
     this.handleLogClick = this.handleLogClick.bind(this);
     this.ShowDashboardLink = this.ShowDashboardLink.bind(this);
+    this.ShowSignUpLink = this.ShowSignUpLink.bind(this);
   }
 
   hideChat() {
@@ -39,6 +40,10 @@ class Navigation extends React.Component {
     return this.props.currentComedian ? <li><Link to="/comediandash"> My Dashboard </Link></li> : <li></li>;
   }
 
+  ShowSignUpLink() {
+    return !this.props.currentComedian ? <li><Link to="/signup"> Sign Up </Link></li> : <li></li>;
+  }
+
   render () {
     return (
       <div className="Navigation">
@@ -51,7 +56,7 @@ class Navigation extends React.Component {
               <li><Link to="/comedianprofiles"> Book a Comedian </Link></li>
               <this.ShowDashboardLink/>
               <li onClick={this.handleLogClick} ><Link to="/login">{this.inOrOut()}</Link></li>
-              <li><Link to="/signup"> Sign Up </Link></li>
+              <this.ShowSignUpLink/>
             </ul>
           </div>
         </nav>
