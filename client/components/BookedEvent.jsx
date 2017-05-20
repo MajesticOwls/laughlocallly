@@ -7,6 +7,7 @@ class BookedEvent extends React.Component {
   }
 
   render() {
+
     return (
       <div className="thumbnail">
         <img src={this.props.booked.photo_url} alt="..." />
