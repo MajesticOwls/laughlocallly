@@ -118,7 +118,7 @@ class EditProfile extends React.Component {
           <button type="submit" className="btn-sm btn-primary" >Update Profile</button>
         </form>
 
-        <div>
+        <div className="alert alert-danger text-center">
           <button className="btn-sm btn-primary" onClick={this.handleProfileDelete} >Delete Profile</button>
         </div>
       </div>
