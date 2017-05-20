@@ -52,9 +52,9 @@ class ComedianDash extends React.Component{
               </div>
               <div className="container-fluid navbar-right">
                 <ul className="nav navbar-nav">
-                  <li className="nav-item nav-link" onClick={this.manageEventsTab}> Manage Events </li>
-                  <li className="nav-item nav-link" onClick={this.openGigsTab}> Open Gigs </li>
-                  <li className="nav-item nav-link" onClick={this.editProfileTab}> Edit Profile </li>
+                  <li className="nav-item" onClick={this.manageEventsTab}><a> Manage Events </a></li>
+                  <li className="nav-item" onClick={this.openGigsTab}><a> Open Gigs </a></li>
+                  <li className="nav-item" onClick={this.editProfileTab}><a> Edit Profile </a></li>
                 </ul>
               </div>
             </nav>
