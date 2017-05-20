@@ -9,6 +9,34 @@ class ComedianDash extends React.Component{
     super(props);
 
     this.state = {
+      tab: 0
+    }
+
+    this.manageEventsTab = this.manageEventsTab.bind(this);
+    this.openGigsTab = this.openGigsTab.bind(this);
+    this.editProfileTab = this.editProfileTab.bind(this);
+    this.ShowPage = this.ShowPage.bind(this);
+  }
+
+  manageEventsTab() {
+    this.setState({ tab: 0 });
+  }
+
+  openGigsTab() {
+    this.setState({ tab: 1 });
+  }
+
+  editProfileTab() {
+    this.setState({ tab: 2 });
+  }
+
+  ShowPage(props) {
+    if (props.tab === 0) {
+      return <ManageEventsPage currentComedian={this.props.currentComedian} />;
+    } else if (props.tab === 1) {
+      return <BookVenuePage currentComedian={this.props.currentComedian} />;
+    } else if (props.tab === 2) {
+      return <EditProfile currentComedian={this.props.currentComedian} changeComedian={this.props.changeComedian} />;
     }
   }
 
@@ -24,18 +52,13 @@ class ComedianDash extends React.Component{
               </div>
               <div className="container-fluid navbar-right">
                 <ul className="nav navbar-nav">
-                  <li><Link to="/editcomedianprofile"> Edit Profile </Link></li>
-                  <li><Link to={{
-                    pathname: "/bookvenue",
-                    state: { comedianInfo: this.props.currentComedian }
-                    }} > Open Gigs </Link></li>
-                  <li><Link to="/manageevents"> Manage Events </Link></li>
+                  <li className="nav-item nav-link" onClick={this.manageEventsTab}> Manage Events </li>
+                  <li className="nav-item nav-link" onClick={this.openGigsTab}> Open Gigs </li>
+                  <li className="nav-item nav-link" onClick={this.editProfileTab}> Edit Profile </li>
                 </ul>
               </div>
             </nav>
-            <Route path="/editcomedianprofile" component={props => <EditProfile currentComedian={this.props.currentComedian} changeComedian={this.props.changeComedian} {...props} />} />
-            <Route path="/bookvenue" component={props => <BookVenuePage currentComedian={this.props.currentComedian} {...props} />} />
-            <Route path="/manageevents" component={props => <ManageEventsPage currentComedian={this.props.currentComedian} {...props} />} />
+            <this.ShowPage tab={this.state.tab}/>
           </div>
         </BrowserRouter>
       )
