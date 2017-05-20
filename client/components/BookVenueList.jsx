@@ -57,7 +57,7 @@ class BookVenueList extends React.Component {
   // }
   changeRender(data) {
     var context = this;
-    var userid = this.props.user.history.location.state.comedianInfo.id;
+    var userid = this.props.currentComedian.id;
     $.ajax({
       type: 'POST',
       url: '/remove/data',

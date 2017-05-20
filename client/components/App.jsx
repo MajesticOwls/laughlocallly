@@ -19,14 +19,14 @@ class App extends React.Component {
     this.state = {
       comedians: [],
       allEvents: [],
-      loggedIn: false
+      currentComedian: null
     }
 
-    this.isLoggedIn = this.isLoggedIn.bind(this);
+    this.changeComedian = this.changeComedian.bind(this);
   }
 
-  isLoggedIn() {
-    this.setState({ loggedIn: !this.state.loggedIn });
+  changeComedian(info) {
+    this.setState({ currentComedian: info });
   }
 
   componentWillMount(){
@@ -52,14 +52,14 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <Navigation loggedIn={this.state.loggedIn} isLoggedIn={this.isLoggedIn} />
+          <Navigation currentComedian={this.state.currentComedian} changeComedian={this.changeComedian} />
         </div>
         <Route exact path='/' component={EventPage} />
         <Route path="/comedianprofiles" component={(props) => <ComedianList comedians={this.state.comedians}{...props} />} />
-        <Route path="/login/" component={props => <LoginPage isLoggedIn={this.isLoggedIn} {...props} />} />
-        <Route path="/signup" component={props => <SignupPage isLoggedIn={this.isLoggedIn} {...props} />} />
+        <Route path="/login/" component={props => <LoginPage changeComedian={this.changeComedian} {...props} />} />
+        <Route path="/signup" component={props => <SignupPage changeComedian={this.changeComedian} {...props} />} />
         <Route path="/book" component={BookPage} />
-        <Route path="/ComedianDash" component={props => <ComedianDash loggedIn={this.state.loggedIn} {...props} />} />
+        <Route path="/comediandash" component={props => <ComedianDash currentComedian={this.state.currentComedian} changeComedian={this.changeComedian} {...props} />} />
         <Route path="/chatBox" component={(props) => <ChatBox data={this.state.allEvents}{...props} />} />
         <Route
         path="/profile/:name"

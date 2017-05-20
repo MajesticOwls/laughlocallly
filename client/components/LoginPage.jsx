@@ -41,11 +41,8 @@ class LoginPage extends React.Component{
         var comedianInfo = data[0];
 
         if (compareHash(enteredPassword, oldPassword, salt)) {
-          this.props.isLoggedIn();
-          this.props.history.push({
-            pathname: '/comediandash',
-            state: {comedianInfo: comedianInfo}
-          });
+          this.props.changeComedian(comedianInfo);
+          this.props.history.push({ pathname: '/comediandash' });
         } else {
           alert('incorrect password');
           return;

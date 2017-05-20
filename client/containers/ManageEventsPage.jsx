@@ -8,7 +8,7 @@ class ManageEventsPage extends React.Component{
     super(props);  
   
     this.state = {
-      comedianInfo: this.props.location.state.comedianInfo,
+      comedianInfo: this.props.currentComedian,
       update: false
     }
     this.onUpdate = this.onUpdate.bind(this);

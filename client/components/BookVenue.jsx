@@ -12,7 +12,6 @@ class BookVenue extends React.Component {
   }
 
   render() {
-    console.log('open props', this.props.open)
     return (
     <div className="col-sm-6 col-md-4">
       <div className="thumbnail">
