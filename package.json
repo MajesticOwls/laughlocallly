@@ -49,6 +49,7 @@
     "socket.io": "^2.0.1",
     "stripe": "^4.19.1",
     "style-loader": "^0.17.0",
+    "twilio": "^3.0.0",
     "validator": "^7.0.0",
     "webpack": "^2.5.1"
   }

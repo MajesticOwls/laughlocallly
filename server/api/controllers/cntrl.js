@@ -3,6 +3,7 @@ var router = express.Router();
 var mysql = require('mysql');
 var db = require('../../../database/index.js');
 var stripe = require('stripe')('sk_test_np8ojqYV5pNwaLN2dtx7ubmt');
+var client = require('twilio')('AC5ab320dfc2f2587e3cd2f8a3d2e7d412', '51f14eada9d32808863dda6112f11b61');
 
 
 // db.connect();
@@ -280,35 +281,79 @@ module.exports.changeEvent = function(req,res) {
 }
 
 module.exports.AcceptedEvent = function(req,res) {
-  console.log(req.body);
-var firstString = `SELECT * FROM events WHERE status = 'open'`
+  console.log('here',req.body);
+  var firstString = `SELECT * FROM events WHERE id = ${req.body.accept.id_venues}`;
+  var queryArray = [];
+  var eventName = '';
 
-stripe.customers.create({
-  email: "jeffreychen41@gmail.com"
-})
-.then(function(customer){
-  return stripe.customers.createSource(customer.id, {
-    source: {
-       object: 'card',
-       exp_month: 10,
-       exp_year: 2018,
-       number: '4242 4242 4242 4242',
-       cvc: 100
+  db.query(firstString, function(err,result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result[0].name);
+      eventName = result[0].name;
+      console.log('one',result[0].id_venues)
+      var secondString = `SELECT * FROM venues WHERE id = ${result[0].id_venues}`;
+      db.query(secondString, function(err,result) {
+        if (err) {
+          console.log('1',err);
+        } else {
+            var thirdString = `SELECT * FROM hosts WHERE id = ${result[0].id_hosts}`;
+            db.query(thirdString, function(err,result) {
+              if(err) {
+              console.log('2',err);
+              } else {
+                console.log('data', result);
+              queryArray = result;
+
+              stripe.customers.create({
+                email: result[0].email
+              })
+              .then(function(customer){
+                return stripe.customers.createSource(customer.id, {
+                  source: {
+                    object: 'card',
+                    exp_month: 10,
+                    exp_year: 2018,
+                    number: '4242 4242 4242 4242',
+                    cvc: 100
+                  }
+                })
+              })
+              .then(function(customer) {
+
+                return stripe.charges.create({
+                  description: "Your Event " + eventName + " has been confirmed!",
+                  customer: customer.customer,
+                  receipt_email: result[0].email,
+                  amount: 10000000,
+                  currency: "usd"
+                })
+              .then(function(charge) {
+                console.log(charge);
+                  client.messages.create({
+                      to: '+1' + result[0].phone,
+                      from: '+1' + '9712394293',
+                      body:'CONGRATS YOUR EVENT' + eventName +' HAS BEEN CONFIRMED!!! '
+                      }, function(error, message) {
+
+                            if (!error) {
+                              console.log('Success! The SID for this SMS message is:');
+                              console.log(message.sid);
+                              console.log('Message sent on:');
+                              console.log(message.dateCreated);
+                            } else {
+                              console.log('Oops! There was an error.',error);
+                              }
+                              res.end();
+                            });
+                })
+              })
+            }
+          })
+        }
+      })
     }
   })
-})
-.then(function(customer) {
-  // YOUR CODE: Save the customer ID and other info in a database for later.
-  //console.log(customer);
-  return stripe.charges.create({
-    description: "the show",
-    customer: customer.customer,
-    receipt_email: 'jeffreychen41@gmail.com',
-    amount: 100,
-    currency: "usd"
-  })
-})
-.then(function(charge) {
-    res.end();
-});
+
 }
