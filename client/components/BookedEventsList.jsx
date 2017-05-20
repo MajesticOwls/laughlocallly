@@ -50,7 +50,8 @@ class BookedEvents extends React.Component {
     return (
       <div className="col-sm-6 col-md-4">
         <h3>Booked event details!</h3>
-        {this.state.bookedEventList.length ? this.state.bookedEventList.map( (booked) => <BookedEvent cancel={this.cancelEvent} booked={booked} key={booked.id}/> ) : <h3>No Events Are Booked</h3>}
+        <h4>There are {this.state.bookedEventList.length} booked events</h4>
+        {this.state.bookedEventList.map( (booked) => <BookedEvent cancel={this.cancelEvent} booked={booked} key={booked.id}/> )}
       </div>
     );
   }
