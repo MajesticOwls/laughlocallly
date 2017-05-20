@@ -119,7 +119,6 @@ module.exports.signup = function(req, res) {
 };
 
 module.exports.updateComedian = (req, res) => {
-  console.log('user info', req.body);
   let queryString = `SELECT * FROM comedians WHERE email = '${req.body.email}';`;
   db.query(queryString, (error, result) => {
     if (result.length > 0 && result[0].id !== +req.body.id) {
@@ -143,6 +142,14 @@ module.exports.updateComedian = (req, res) => {
         res.json(result);
       })
     }
+  })
+}
+
+module.exports.deleteComedian = (req, res) => {
+  let queryString = `DELETE FROM comedians WHERE id = ${req.body.id};`;
+  db.query(queryString, (error, result) => {
+    if (error) console.log('delete comedian error:', error);
+    res.json(result);
   })
 }
 

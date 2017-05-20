@@ -2,6 +2,10 @@
   padding-bottom: 100px;
 }
 
+.alert {
+  margin-top: 15px;
+}
+
 .comedianNav {
   border-bottom: solid 1px gray;
 }

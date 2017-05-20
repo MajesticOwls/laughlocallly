@@ -14,6 +14,7 @@ class EditProfile extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
+    this.handleProfileDelete = this.handleProfileDelete.bind(this);
   }
 
   handleInput(e) {
@@ -52,6 +53,26 @@ class EditProfile extends React.Component {
     .fail((error) => {
       console.log('Update request failed:', error);
     })
+  }
+
+  handleProfileDelete(e) {
+    e.preventDefault();
+    const context = this;
+    const user = this.state.user;
+    if (window.confirm('Permanently delete your profile?')) {
+      $.ajax({
+        url: '/deleteComedian',
+        method: 'DELETE',
+        data: user
+      })
+      .done((data) => {
+        alert('Profile Deleted!');
+        context.props.changeComedian(null);
+      })
+      .fail((error) => {
+        console.log('Delete request failed:', error);
+      })
+    }
   }
 
   render() {
@@ -96,6 +117,10 @@ class EditProfile extends React.Component {
 
           <button type="submit" className="btn-sm btn-primary" >Update Profile</button>
         </form>
+
+        <div className="alert alert-danger text-center">
+          <button className="btn-sm btn-primary" onClick={this.handleProfileDelete} >Delete Profile</button>
+        </div>
       </div>
     )
   }

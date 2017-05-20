@@ -26,6 +26,8 @@ router.get('/getSpecificVenue', cntrl.getSpecificVenue);
 
 router.put('/updateComedian', cntrl.updateComedian);
 
+router.delete('/deleteComedian', cntrl.deleteComedian);
+
 //for saving mesaages
 router.post('/message/save', cntrl.messageSave);
 router.get('/message/return', cntrl.returnAllMessages);
