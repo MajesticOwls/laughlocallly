@@ -53,7 +53,7 @@ class EventList extends React.Component {
           <button onClick={this.handleClick} type="button" >Search</button>
         </div>
         <div className="row">
-          {this.state.firstLoad ? this.props.data.map( (event) => <EventListItem event={event} key={event.name}/> ) : this.state.filteredEvents.map( (event) => <EventListItem event={event} key={event.name}/> ) }
+          {this.state.firstLoad ? this.props.data.map( (event, idx) => <EventListItem event={event} key={idx}/> ) : this.state.filteredEvents.map( (event, idx) => <EventListItem event={event} key={idx}/> ) }
         </div>
       </div>
     );

@@ -20,7 +20,6 @@ class BookVenueList extends React.Component {
   getOpenEvents() {
     $.get('/getOpenEvents')
     .done(data => {
-      console.log('data from open', data)
       this.setState({
         openVenueList: data
       })
@@ -79,7 +78,6 @@ class BookVenueList extends React.Component {
   }
 
   render() {
-    console.log('open events list', this.state.openVenueList)
     return (
       <div className="container">
         <h3>Open Event Details!</h3>
