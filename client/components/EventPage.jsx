@@ -2,16 +2,18 @@ import React from 'react';
 import $ from 'jquery';
 import EventList from './EventList.jsx';
 import ChatBox from './ChatBox.jsx';
+import EventMap from './Map.jsx'
 
 import { Link } from 'react-router-dom';
 
 class EventPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       allEvents: [],
+      showMap: false
     };
-    this.fetch = this.fetch.bind(this);    
+    this.fetch = this.fetch.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +44,7 @@ class EventPage extends React.Component {
           </div>
         </div>
         <div className='container'>
+          <EventMap />
           <EventList data={this.state.allEvents}/>
         </div>
       </div>

@@ -11,12 +11,12 @@ import EventMap from './components/Map.jsx'
 
 injectTapEventPlugin();
 
-// ReactDOM.render(<MuiThemeProvider muiTheme={getMuiTheme()}>
-//   <BrowserRouter><App /></BrowserRouter></MuiThemeProvider>, document.getElementById('app'));
+ReactDOM.render(<MuiThemeProvider muiTheme={getMuiTheme()}>
+  <BrowserRouter><App /></BrowserRouter></MuiThemeProvider>, document.getElementById('app'));
 
  // <Events events={this.state.events} />
 
  //
  //
 
- ReactDOM.render(<EventMap />, document.getElementById('app'));
+ // ReactDOM.render(<EventMap />, document.getElementById('app'));
