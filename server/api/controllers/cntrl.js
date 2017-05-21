@@ -2,11 +2,15 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var db = require('../../../database/index.js');
-var stripe = require('stripe')('sk_test_np8ojqYV5pNwaLN2dtx7ubmt');
-var client = require('twilio')('AC5ab320dfc2f2587e3cd2f8a3d2e7d412', '51f14eada9d32808863dda6112f11b61');
 
 
 // db.connect();
+var TWILIO_KEY = process.env.TWILIO_ID || require('./config.js').TWILIO_ID;
+var TWILIO_API_KEY = process.env.TWILIO_API_KEY || require('./config').TWILIO_API_KEY;
+var STRIPE_KEY = process.env.TWILIO_KEY || require('./config').STRIPE_ID;
+var client = require('twilio')(TWILIO_KEY, TWILIO_API_KEY);
+var stripe = require('stripe')(STRIPE_KEY);
+
 
 module.exports.getEvents = function(req, res) {
   var queryString = `SELECT events.name FROM events, comedians WHERE (comedians.email = '${req.query.email}'
@@ -323,11 +327,14 @@ module.exports.AcceptedEvent = function(req,res) {
                   currency: "usd"
                 })
               .then(function(charge) {
-                console.log(charge);
+                  console.log('charge', queryArray);
+                  var numberString = queryArray[0].phone.toString();
+                  queryArray = [];
+                  console.log(numberString);
                   client.messages.create({
-                      to: '+1' + result[0].phone,
+                      to: '+1' + numberString,
                       from: '+1' + '9712394293',
-                      body:'CONGRATS YOUR EVENT' + eventName +' HAS BEEN CONFIRMED!!! '
+                      body:'CONGRATS YOUR EVENT' + eventName +'HAS BEEN CONFIRMED!!!'
                       }, function(error, message) {
 
                             if (!error) {

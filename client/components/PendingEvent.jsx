@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from 'react-modal';
 import EventRegistrationForm from './EventRegistrationForm.jsx';
 
 
@@ -97,17 +96,6 @@ class PendingEvent extends React.Component {
             <p><strong>Description:</strong> {this.props.pending.description}</p>
             <button className="btn btn-primary btn-sm" onClick={this.acceptJob.bind(this)}>Accept</button>
             <button className="btn btn-primary btn-sm" onClick={() => this.props.deny(this.props.pending.name)}>Deny</button>
-
-            <Modal
-              isOpen={this.state.ModalIsOpen}
-              onRequestClose={this.closeModal}
-              style={customStyles}
-              contentLabel="Register Popup"
-            >
-              <EventRegistrationForm audienceCount = {this.getAudienceCount} close = {this.closeModal} event={this.props.event}/>
-              <p></p>
-              <button className="btn-sm btn-default" onClick={this.closeModal}>Close</button>
-            </Modal>
           </div>
         </div>
       </div>
