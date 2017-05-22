@@ -5,6 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter, Route } from 'react-router-dom';
 import App from './components/App.jsx';
+import EventMap from './components/Map.jsx'
 
 
 
@@ -16,4 +17,6 @@ ReactDOM.render(<MuiThemeProvider muiTheme={getMuiTheme()}>
  // <Events events={this.state.events} />
 
  //
- // 
+ //
+
+ // ReactDOM.render(<EventMap />, document.getElementById('app'));
