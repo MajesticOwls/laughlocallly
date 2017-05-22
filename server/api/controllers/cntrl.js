@@ -277,18 +277,25 @@ module.exports.changeEvent = function(req,res) {
   })
 }
 
+// This function accepts events from user request
+// the first part searches the DB for the user/hosts
+//then it calls the Stripe API for to record a ticketing
+// and finally sends a the user a text for via twilio
 module.exports.AcceptedEvent = function(req,res) {
-  console.log('here',req.body);
-  var firstString = `SELECT * FROM events WHERE id = ${req.body.accept.id_venues}`;
   var queryArray = [];
   var eventName = '';
-
-  db.query(firstString, function(err,result) {
+/**
+1. Database search for the events venue location
+2. Form events array, it searches for the venue_id of the events
+3. From venues array, it searches for the host_id for the hosts
+4. Saves the host array as the final query (queryArray)
+**/
+  db.query(`SELECT * FROM events WHERE id_venues = ${req.body.accept.id_venues}`, function(err,result) {
     if (err) {
       console.log(err);
     } else {
-      console.log(result[0].name);
       eventName = result[0].name;
+
       console.log('one',result[0].id_venues)
       var secondString = `SELECT * FROM venues WHERE id = ${result[0].id_venues}`;
       db.query(secondString, function(err,result) {
@@ -300,9 +307,13 @@ module.exports.AcceptedEvent = function(req,res) {
               if(err) {
               console.log('2',err);
               } else {
-                console.log('data', result);
               queryArray = result;
-
+              /**
+              1.Creates a new user under the stripe ticket system
+              2. Inputs the users creditcard into for payment (fake data at the moment)
+              3. Creates a charge for the user for the event
+              4. In live mode this will send an email to the user to confirm the event
+              **/
               stripe.customers.create({
                 email: result[0].email
               })
@@ -323,18 +334,22 @@ module.exports.AcceptedEvent = function(req,res) {
                   description: "Your Event " + eventName + " has been confirmed!",
                   customer: customer.customer,
                   receipt_email: result[0].email,
-                  amount: 10000000,
+                  amount: 1000,
                   currency: "usd"
                 })
               .then(function(charge) {
-                  console.log('charge', queryArray);
+                  /**
+                  1. Using the host info a message is used to send a live message via Twilio API
+                  2. User are then sent a SMS message on accept of the event
+                  3. (currently only can send to varified Twilio users)
+                  **/
                   var numberString = queryArray[0].phone.toString();
                   queryArray = [];
                   console.log(numberString);
                   client.messages.create({
                       to: '+1' + numberString,
                       from: '+1' + '9712394293',
-                      body:'CONGRATS YOUR EVENT' + eventName +'HAS BEEN CONFIRMED!!!'
+                      body:'CONGRATS YOUR EVENT ' + eventName +' HAS BEEN CONFIRMED!!!'
                       }, function(error, message) {
 
                             if (!error) {
@@ -345,6 +360,7 @@ module.exports.AcceptedEvent = function(req,res) {
                             } else {
                               console.log('Oops! There was an error.',error);
                               }
+                              queryArray =[];
                               res.end();
                             });
                 })

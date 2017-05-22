@@ -30,3 +30,4 @@ bower_components/
 public/bundle.js
 .DS_store
 .vscode
+server/api/controllers/config.js
