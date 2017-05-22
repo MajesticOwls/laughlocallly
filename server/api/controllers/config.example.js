@@ -1,0 +1,5 @@
+module.exports = {
+  TWILIO_ID: 'CLIENT_ID_GOES_HERE',
+  TWILIO_API_KEY: 'GOES_HERE',
+  STRIPE_ID: 'GOES_HERE'
+};

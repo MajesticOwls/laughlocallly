@@ -28,5 +28,6 @@ dist/
 node_modules/
 bower_components/
 public/bundle.js
+server/api/controllers/config.js
 .DS_store
 .vscode

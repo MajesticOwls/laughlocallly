@@ -1,10 +1,16 @@
-var express = require('express')
-var router = express.Router()
-var mysql = require('mysql')
-var db = require('../../../database/index.js')
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
+var db = require('../../../database/index.js');
 
 
 // db.connect();
+var TWILIO_KEY = process.env.TWILIO_ID || require('./config.js').TWILIO_ID;
+var TWILIO_API_KEY = process.env.TWILIO_API_KEY || require('./config').TWILIO_API_KEY;
+var STRIPE_KEY = process.env.TWILIO_KEY || require('./config').STRIPE_ID;
+var client = require('twilio')(TWILIO_KEY, TWILIO_API_KEY);
+var stripe = require('stripe')(STRIPE_KEY);
+
 
 module.exports.getEvents = function(req, res) {
   var queryString = `SELECT events.name FROM events, comedians WHERE (comedians.email = '${req.query.email}'
@@ -274,10 +280,102 @@ module.exports.changeEvent = function(req,res) {
           })
         }
       })
-
-
     }
+  })
+}
 
+// This function accepts events from user request
+// the first part searches the DB for the user/hosts
+//then it calls the Stripe API for to record a ticketing
+// and finally sends a the user a text for via twilio
+module.exports.AcceptedEvent = function(req,res) {
+  var queryArray = [];
+  var eventName = '';
+/**
+1. Database search for the events venue location
+2. Form events array, it searches for the venue_id of the events
+3. From venues array, it searches for the host_id for the hosts
+4. Saves the host array as the final query (queryArray)
+**/
+  db.query(`SELECT * FROM events WHERE id_venues = ${req.body.accept.id_venues}`, function(err,result) {
+    if (err) {
+      console.log(err);
+    } else {
+      eventName = result[0].name;
+
+      console.log('one',result[0].id_venues)
+      var secondString = `SELECT * FROM venues WHERE id = ${result[0].id_venues}`;
+      db.query(secondString, function(err,result) {
+        if (err) {
+          console.log('1',err);
+        } else {
+            var thirdString = `SELECT * FROM hosts WHERE id = ${result[0].id_hosts}`;
+            db.query(thirdString, function(err,result) {
+              if(err) {
+              console.log('2',err);
+              } else {
+              queryArray = result;
+              /**
+              1.Creates a new user under the stripe ticket system
+              2. Inputs the users creditcard into for payment (fake data at the moment)
+              3. Creates a charge for the user for the event
+              4. In live mode this will send an email to the user to confirm the event
+              **/
+              stripe.customers.create({
+                email: result[0].email
+              })
+              .then(function(customer){
+                return stripe.customers.createSource(customer.id, {
+                  source: {
+                    object: 'card',
+                    exp_month: 10,
+                    exp_year: 2018,
+                    number: '4242 4242 4242 4242',
+                    cvc: 100
+                  }
+                })
+              })
+              .then(function(customer) {
+                return stripe.charges.create({
+                  description: "Your Event " + eventName + " has been confirmed!",
+                  customer: customer.customer,
+                  receipt_email: result[0].email,
+                  amount: 1000,
+                  currency: "usd"
+                })
+              .then(function(charge) {
+                  /**
+                  1. Using the host info a message is used to send a live message via Twilio API
+                  2. User are then sent a SMS message on accept of the event
+                  3. (currently only can send to varified Twilio users)
+                  **/
+                  var numberString = queryArray[0].phone.toString();
+                  queryArray = [];
+                  console.log(numberString);
+                  client.messages.create({
+                      to: '+1' + numberString,
+                      from: '+1' + '9712394293',
+                      body:'CONGRATS YOUR EVENT ' + eventName +' HAS BEEN CONFIRMED!!!'
+                      }, function(error, message) {
+
+                            if (!error) {
+                              console.log('Success! The SID for this SMS message is:');
+                              console.log(message.sid);
+                              console.log('Message sent on:');
+                              console.log(message.dateCreated);
+                            } else {
+                              console.log('Oops! There was an error.',error);
+                              }
+                              queryArray =[];
+                              res.end();
+                            });
+                })
+              })
+            }
+          })
+        }
+      })
+    }
   })
 
 }
