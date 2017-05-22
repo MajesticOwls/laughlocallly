@@ -336,7 +336,6 @@ module.exports.AcceptedEvent = function(req,res) {
                 })
               })
               .then(function(customer) {
-
                 return stripe.charges.create({
                   description: "Your Event " + eventName + " has been confirmed!",
                   customer: customer.customer,
